@@ -1,0 +1,998 @@
+<!DOCTYPE html><html class="dark scroll-smooth" lang="en" style=""><head></head><body class="bg-ink text-cream selection:bg-bronze selection:text-ink antialiased"><svg aria-hidden="true" class="inline-defs-container" style="position:absolute;width:0;height:0;overflow:hidden"></svg>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CRON Technologies — Creative Engineering Studio</title>
+<!-- Fonts: Fraunces (Headlines), Poppins (Body & Buttons), Space Grotesk (Labels & Stats) -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0E1A13',
+            cream: '#F6F1E8',
+            bronze: '#B58B5A',
+            forest: '#2F5A3C',
+            sage: '#5E7F62',
+            mist: '#9FB59C'
+          },
+          fontFamily: {
+            headline: ['Fraunces', 'serif'],
+            body: ['Poppins', 'sans-serif'],
+            mono: ['Space Grotesk', 'sans-serif'],
+          },
+          animation: {
+            'marquee': 'marquee 22s linear infinite',
+            'float-slow': 'float 6s ease-in-out infinite',
+            'spin-slow': 'spin 35s linear infinite',
+            'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+          },
+          keyframes: {
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+              '50%': { opacity: '0.8', transform: 'scale(1.08)' },
+            }
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #0E1A13;
+        color: #F6F1E8;
+        overflow-x: hidden;
+      }
+    }
+    ::selection {
+      background-color: #B58B5A;
+      color: #0E1A13;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0E1A13;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2F5A3C;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #B58B5A;
+    }
+  </style>
+<svg aria-hidden="true" class="inline-defs-container" style="position:absolute;width:0;height:0;overflow:hidden"></svg>
+<!-- 1. NAVIGATION (Ink with subtle glass border) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-white/75 backdrop-blur-xl border-b border-black/5 transition-all">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+<!-- Left: CRON star logo in bronze + Cron wordmark in Ink #0E1A13 -->
+<a class="flex items-center gap-2.5 group" href="#">
+<div class="w-9 h-9 rounded-full bg-[#B58B5A]/10 border border-[#B58B5A]/30 flex items-center justify-center p-1.5 group-hover:scale-105 transition-all">
+<img alt="CRON Logo" class="w-full h-full object-contain transition-transform duration-500 group-hover:rotate-45" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzQQOI8ndp_jGagngMcM49_xNS_J0rqMUAokC0Xzrx9tH3nM-3jQtWFtv8PtK5xdDIWSY58Z99C8En4p5XTjY9FzzoexmX_60Az5TLIha4x_wiYsuNn3a-5Zg1mj71HW0zI6bzzKG9-JXmo2T1PnjQ1IawW6c2FLqLLz9dHWU_-JCojodmMzji6bD5_ehvHbjDKTvjkqMbrBcxqmEP8bIR2ymjLFWj8gfFMt3bwIG1oSpg9Ms9yfyrJKgLe14-loW7Hbs">
+</div>
+<span class="font-headline font-semibold text-2xl tracking-tight text-[#0E1A13]">Cron</span>
+</a>
+<!-- Center: Frosted white pill container with links -->
+<nav class="hidden md:flex items-center gap-1.5 bg-white/80 backdrop-blur-md border border-black/5 shadow-sm rounded-full px-2 py-1.5">
+<a class="px-5 py-2 rounded-full font-body text-xs font-semibold text-[#0E1A13] bg-[#F6F1E8] shadow-sm transition-all" href="#services">Services</a>
+<a class="px-5 py-2 rounded-full font-body text-xs font-medium text-[#0E1A13]/70 hover:text-[#0E1A13] hover:bg-black/5 transition-all" href="#products">Products</a>
+<a class="px-5 py-2 rounded-full font-body text-xs font-medium text-[#0E1A13]/70 hover:text-[#0E1A13] hover:bg-black/5 transition-all" href="#playbook">About</a>
+<a class="px-5 py-2 rounded-full font-body text-xs font-medium text-[#0E1A13]/70 hover:text-[#0E1A13] hover:bg-black/5 transition-all" href="#contact">Contact</a>
+</nav>
+<!-- Right: Systems online chip + Ink Let's talk button -->
+<div class="flex items-center gap-3.5">
+<div class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/5">
+<span class="w-2 h-2 rounded-full bg-[#B58B5A] animate-ping"></span>
+<span class="font-mono text-[10px] font-bold tracking-widest text-[#0E1A13]/70 uppercase">SYSTEMS ONLINE</span>
+</div>
+<a class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#0E1A13] text-[#F6F1E8] font-body text-xs font-semibold hover:bg-[#2F5A3C] hover:scale-105 transition-all shadow-md" href="#contact">
+<span class="">Let's talk</span>
+<span class="text-sm font-bold">↗</span>
+</a>
+</div>
+</div>
+</header>
+<!-- 2. HERO SECTION (Ink #0E1A13) -->
+<section class="relative pt-36 pb-20 lg:pt-40 lg:pb-28 px-6 lg:px-12 bg-white text-[#0E1A13] overflow-hidden select-none border-b border-black/5" style="background-image: radial-gradient(rgba(14, 26, 19, 0.08) 1.2px, transparent 1.2px); background-size: 28px 28px;">
+<!-- Faint warm bronze haze behind the star & center -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[720px] h-[720px] rounded-full bg-[#B58B5A]/10 blur-[130px] pointer-events-none"></div>
+<div class="absolute -bottom-20 left-1/3 w-[520px] h-[520px] rounded-full bg-[#9FB59C]/15 blur-[120px] pointer-events-none"></div>
+<!-- Oversized cropped faint Cream star shape watermark in background -->
+<img alt="" class="absolute -left-32 -top-24 w-[740px] h-[740px] opacity-[0.04] pointer-events-none -rotate-12 object-contain filter grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzQQOI8ndp_jGagngMcM49_xNS_J0rqMUAokC0Xzrx9tH3nM-3jQtWFtv8PtK5xdDIWSY58Z99C8En4p5XTjY9FzzoexmX_60Az5TLIha4x_wiYsuNn3a-5Zg1mj71HW0zI6bzzKG9-JXmo2T1PnjQ1IawW6c2FLqLLz9dHWU_-JCojodmMzji6bD5_ehvHbjDKTvjkqMbrBcxqmEP8bIR2ymjLFWj8gfFMt3bwIG1oSpg9Ms9yfyrJKgLe14-loW7Hbs">
+<!-- Top-right corner circular rotating text badge with small bronze star mark -->
+<div class="hidden md:flex absolute top-28 right-10 lg:right-16 z-20 items-center justify-center w-28 h-28 pointer-events-none">
+<svg class="w-full h-full animate-spin-slow" viewBox="0 0 100 100">
+<defs>
+<path d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" id="circlePath"></path>
+</defs>
+<text class="font-mono text-[8.5px] font-bold uppercase tracking-[0.24em] fill-[#0E1A13]/70">
+<textPath href="#circlePath">
+          A CRON COMPANY · BUILD · SHIP · DROP ·
+        </textPath>
+</text>
+</svg>
+<div class="absolute w-6 h-6 flex items-center justify-center p-0.5">
+<img alt="Cron mark" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzQQOI8ndp_jGagngMcM49_xNS_J0rqMUAokC0Xzrx9tH3nM-3jQtWFtv8PtK5xdDIWSY58Z99C8En4p5XTjY9FzzoexmX_60Az5TLIha4x_wiYsuNn3a-5Zg1mj71HW0zI6bzzKG9-JXmo2T1PnjQ1IawW6c2FLqLLz9dHWU_-JCojodmMzji6bD5_ehvHbjDKTvjkqMbrBcxqmEP8bIR2ymjLFWj8gfFMt3bwIG1oSpg9Ms9yfyrJKgLe14-loW7Hbs">
+</div>
+</div>
+<!-- Main Centered Content -->
+<div class="max-w-[1440px] mx-auto flex flex-col items-center text-center relative z-10">
+<!-- Micro pill tag -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0E1A13]/5 border border-black/5 mb-6 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-[#B58B5A]"></span>
+<span class="font-mono text-[11px] font-semibold tracking-[0.2em] text-[#0E1A13]/75 uppercase">
+        STUDIO EDITION · 2026
+      </span>
+</div>
+<!-- Headline (Fraunces SemiBold, tight leading, bronze italic accent) -->
+<h1 class="font-headline font-semibold text-5xl sm:text-7xl lg:text-[96px] xl:text-[108px] leading-[0.95] tracking-[-0.03em] text-[#0E1A13] mb-5 max-w-4xl">
+      We build. We ship.<br>
+      We <span class="font-normal italic text-[#B58B5A]">drop.</span>
+</h1>
+<!-- Subcopy in Poppins -->
+<p class="font-body text-base sm:text-lg text-[#0E1A13]/60 max-w-xl mb-8 font-normal leading-relaxed">
+      Software, AI agents and 3D, built to ship fast.
+    </p>
+<!-- CTA Buttons side by side -->
+<div class="flex flex-wrap items-center justify-center gap-4 mb-16">
+<a class="px-8 py-4 rounded-full bg-[#0E1A13] text-[#F6F1E8] font-body text-sm font-semibold tracking-wide hover:bg-[#2F5A3C] hover:scale-105 transition-all shadow-xl shadow-black/10 flex items-center gap-2.5 group" href="#contact">
+<span class="">Start a project</span>
+<span class="text-base font-bold transition-transform group-hover:translate-x-1">→</span>
+</a>
+<a class="px-8 py-4 rounded-full bg-white border border-black/10 text-[#0E1A13] font-body text-sm font-semibold tracking-wide hover:bg-black/5 hover:border-black/20 transition-all shadow-sm flex items-center gap-2" href="#work">
+<span class="material-symbols-outlined text-lg text-[#B58B5A]">play_circle</span>
+<span class="">Watch showreel</span>
+</a>
+</div>
+</div>
+<!-- DRAMATIC CENTERPIECE CONTAINER -->
+<div class="relative max-w-[1440px] mx-auto w-full min-h-[520px] lg:min-h-[580px] flex items-center justify-center mt-4">
+<!-- Background decorative curved connector lines (Left and Right Cards) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" fill="none">
+<!-- Left card connector to star center -->
+<path d="M 180 180 C 260 260, 420 280, 620 300" opacity="0.45" stroke="#B58B5A" stroke-dasharray="4 6" stroke-width="1.5"></path>
+<!-- Right card connector to star center -->
+<path d="M 1260 180 C 1180 260, 1020 280, 820 300" opacity="0.45" stroke="#B58B5A" stroke-dasharray="4 6" stroke-width="1.5"></path>
+</svg>
+<!-- LEFT FLOATING CARD (tilted -4 degrees) -->
+<div class="hidden lg:flex absolute left-6 top-12 z-20 transform -rotate-4 hover:rotate-0 hover:scale-105 transition-all duration-300 w-72 bg-white/90 backdrop-blur-md rounded-[28px] p-5 border border-black/5 shadow-xl flex-col gap-2 text-left">
+<div class="flex items-center justify-between">
+<div class="w-9 h-9 rounded-2xl bg-[#B58B5A]/15 text-[#B58B5A] flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">graphic_eq</span>
+</div>
+<span class="font-mono text-[10px] font-bold text-[#0E1A13]/50 tracking-wider uppercase">SPRINT 01</span>
+</div>
+<h4 class="font-headline font-semibold text-lg text-[#0E1A13] leading-snug mt-1">
+        Ideas into <span class="italic font-normal text-[#B58B5A]">product.</span>
+</h4>
+<p class="font-body text-xs text-[#0E1A13]/60">Brief it. We build it.</p>
+<div class="mt-2 pt-2 border-t border-black/5 flex items-center justify-between text-[10px] font-mono text-[#0E1A13]/50">
+<span class="">EST. TIME</span>
+<span class="text-[#0E1A13] font-bold">14 DAYS</span>
+</div>
+</div>
+<!-- RIGHT FLOATING CARD (tilted +4 degrees) -->
+<div class="hidden lg:flex absolute right-6 top-14 z-20 transform rotate-4 hover:rotate-0 hover:scale-105 transition-all duration-300 w-72 bg-white/90 backdrop-blur-md rounded-[28px] p-5 border border-black/5 shadow-xl flex-col gap-2 text-left">
+<div class="flex items-center justify-between">
+<!-- Overlapping avatar placeholders -->
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-[#2F5A3C] text-[#F6F1E8] font-mono text-[9px] font-bold flex items-center justify-center border-2 border-white">JD</div>
+<div class="w-7 h-7 rounded-full bg-[#B58B5A] text-[#0E1A13] font-mono text-[9px] font-bold flex items-center justify-center border-2 border-white">AK</div>
+<div class="w-7 h-7 rounded-full bg-[#9FB59C] text-[#0E1A13] font-mono text-[9px] font-bold flex items-center justify-center border-2 border-white">MR</div>
+<div class="w-7 h-7 rounded-full bg-black/5 text-[#0E1A13] font-mono text-[9px] font-bold flex items-center justify-center border-2 border-white">+</div>
+</div>
+<span class="font-mono text-[9px] font-bold px-2 py-0.5 rounded-full bg-[#2F5A3C]/10 text-[#2F5A3C]">ACTIVE</span>
+</div>
+<h4 class="font-headline font-semibold text-lg text-[#0E1A13] leading-snug mt-1">
+        Shipped, not slideware.
+      </h4>
+<p class="font-body text-xs text-[#0E1A13]/60">Live in weeks.</p>
+<div class="mt-2 pt-2 border-t border-black/5 flex items-center justify-between text-[10px] font-mono text-[#0E1A13]/50">
+<span class="">DEPLOYMENT</span>
+<span class="text-[#2F5A3C] font-bold">100% PROD</span>
+</div>
+</div>
+<!-- CENTRAL STAR EMBLEM: rising from bottom, rendered with brushed bronze tone and realistic soft shadow -->
+<div class="relative flex flex-col items-center justify-center w-full max-w-[620px]">
+<!-- Orbit Ring behind star -->
+<div class="absolute w-[440px] h-[440px] sm:w-[540px] sm:h-[540px] rounded-full border border-dashed border-[#B58B5A]/30 pointer-events-none"></div>
+<div class="absolute w-[360px] h-[360px] sm:w-[420px] sm:h-[420px] rounded-full border border-black/5 pointer-events-none"></div>
+<!-- Star Mark Container with depth, rim light and shadow -->
+<div class="relative z-10 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center p-4">
+<!-- Soft realistic ground shadow -->
+<div class="absolute bottom-4 w-3/4 h-10 rounded-full bg-black/15 blur-2xl pointer-events-none"></div>
+<!-- The Bronze 5-arm star image -->
+<img alt="CRON Star Emblem" class="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(181,139,90,0.4)] animate-pulse-glow hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzQQOI8ndp_jGagngMcM49_xNS_J0rqMUAokC0Xzrx9tH3nM-3jQtWFtv8PtK5xdDIWSY58Z99C8En4p5XTjY9FzzoexmX_60Az5TLIha4x_wiYsuNn3a-5Zg1mj71HW0zI6bzzKG9-JXmo2T1PnjQ1IawW6c2FLqLLz9dHWU_-JCojodmMzji6bD5_ehvHbjDKTvjkqMbrBcxqmEP8bIR2ymjLFWj8gfFMt3bwIG1oSpg9Ms9yfyrJKgLe14-loW7Hbs">
+</div>
+<!-- 5-6 ORBITING FROSTED GLASS CARDS in curved arrangement -->
+<!-- Orbit Card 1: AI Agents (Top Left) -->
+<div class="absolute top-2 left-2 sm:-left-4 md:left-2 lg:left-6 z-20 bg-white/80 backdrop-blur-md border border-[#B58B5A]/25 rounded-[28px] p-3.5 sm:p-4 shadow-lg flex items-center gap-3.5 hover:scale-105 transition-all">
+<div class="w-9 h-9 rounded-2xl bg-[#0E1A13] text-[#F6F1E8] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base text-[#B58B5A]">neurology</span>
+</div>
+<div class="text-left">
+<div class="font-headline font-semibold text-sm text-[#0E1A13] leading-tight">AI Agents</div>
+<div class="font-body text-[11px] text-[#0E1A13]/60">Automate the boring stuff.</div>
+</div>
+</div>
+<!-- Orbit Card 2: 3D Models (Top Right) -->
+<div class="absolute top-4 right-2 sm:-right-4 md:right-2 lg:right-6 z-20 bg-white/80 backdrop-blur-md border border-[#B58B5A]/25 rounded-[28px] p-3.5 sm:p-4 shadow-lg flex items-center gap-3.5 hover:scale-105 transition-all">
+<div class="w-9 h-9 rounded-2xl bg-[#2F5A3C] text-[#F6F1E8] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">view_in_ar</span>
+</div>
+<div class="text-left">
+<div class="font-headline font-semibold text-sm text-[#0E1A13] leading-tight">3D Models</div>
+<div class="font-body text-[11px] text-[#0E1A13]/60">See it before it exists.</div>
+</div>
+</div>
+<!-- Orbit Card 3: Software (Mid-Left) -->
+<div class="absolute bottom-24 -left-6 sm:-left-12 md:-left-8 lg:-left-12 z-20 bg-white/80 backdrop-blur-md border border-[#B58B5A]/25 rounded-[28px] p-3.5 sm:p-4 shadow-lg flex items-center gap-3.5 hover:scale-105 transition-all">
+<div class="w-9 h-9 rounded-2xl bg-[#B58B5A] text-[#0E1A13] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">terminal</span>
+</div>
+<div class="text-left">
+<div class="font-headline font-semibold text-sm text-[#0E1A13] leading-tight">Software</div>
+<div class="font-body text-[11px] text-[#0E1A13]/60">Custom built, fast.</div>
+</div>
+</div>
+<!-- Orbit Card 4: Consulting (Mid-Right) -->
+<div class="absolute bottom-24 -right-6 sm:-right-12 md:-right-8 lg:-right-12 z-20 bg-white/80 backdrop-blur-md border border-[#B58B5A]/25 rounded-[28px] p-3.5 sm:p-4 shadow-lg flex items-center gap-3.5 hover:scale-105 transition-all">
+<div class="w-9 h-9 rounded-2xl bg-[#9FB59C] text-[#0E1A13] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-base">explore</span>
+</div>
+<div class="text-left">
+<div class="font-headline font-semibold text-sm text-[#0E1A13] leading-tight">Consulting</div>
+<div class="font-body text-[11px] text-[#0E1A13]/60">Strategy that ships.</div>
+</div>
+</div>
+<!-- Orbit Card 5: UI Fragment Card (Bottom Center Snippet) -->
+<div class="absolute -bottom-6 z-20 bg-[#0E1A13] text-[#F6F1E8] rounded-2xl px-5 py-2.5 shadow-xl border border-[#B58B5A]/40 flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#B58B5A] animate-ping"></span>
+<span class="font-mono text-[11px] font-medium text-[#9FB59C]">&gt; cron.deploy(<span class="text-[#B58B5A]">'production'</span>)</span>
+<span class="font-mono text-[10px] text-[#F6F1E8]/50 border-l border-white/20 pl-2">0.42s</span>
+</div>
+</div>
+</div>
+<!-- BOTTOM DETAILS BAR (Inside Hero) -->
+<div class="max-w-[1440px] mx-auto w-full pt-16 mt-8 border-t border-black/5 flex flex-col sm:flex-row items-center justify-between gap-6 text-[#0E1A13]/70 font-body text-xs relative z-10">
+<!-- Bottom-Left: Thin bronze line, Trusted by 50+ teams + avatar pills -->
+<div class="flex items-center gap-4">
+<div class="w-8 h-0.5 bg-[#B58B5A]"></div>
+<span class="font-medium">Trusted by 50+ venture teams</span>
+<div class="flex -space-x-1.5">
+<div class="w-6 h-6 rounded-full bg-[#2F5A3C] text-[9px] font-mono text-[#F6F1E8] flex items-center justify-center border border-white">A</div>
+<div class="w-6 h-6 rounded-full bg-[#B58B5A] text-[9px] font-mono text-[#0E1A13] flex items-center justify-center border border-white">N</div>
+<div class="w-6 h-6 rounded-full bg-[#9FB59C] text-[9px] font-mono text-[#0E1A13] flex items-center justify-center border border-white">C</div>
+<div class="w-6 h-6 rounded-full bg-black/10 text-[9px] font-mono text-[#0E1A13] flex items-center justify-center border border-white">+</div>
+</div>
+</div>
+<!-- Bottom-Right: 4-point sparkle icon + Less noise. More shipped. -->
+<div class="flex items-center gap-2">
+<span class="text-[#B58B5A] text-sm">✦</span>
+<span class="font-medium text-[#0E1A13]">Less noise. More shipped.</span>
+</div>
+</div>
+</section>
+<!-- 3. MARQUEE TICKER (Solid Bronze #B58B5A, Ink #0E1A13 text) -->
+<div class="w-full bg-bronze text-ink py-4 overflow-hidden select-none shadow-xl border-y-2 border-ink">
+<div class="flex whitespace-nowrap animate-marquee gap-8 font-mono font-bold text-xs uppercase tracking-[0.22em] items-center">
+<span class="">CUSTOM SOFTWARE</span>
+<span class="text-ink/60">✦</span>
+<span class="">AI AGENTS</span>
+<span class="text-ink/60">✦</span>
+<span class="">3D VISUALS</span>
+<span class="text-ink/60">✦</span>
+<span class="">CONSULTING</span>
+<span class="text-ink/60">✦</span>
+<span class="">NEXT-GEN PRODUCTS</span>
+<span class="text-ink/60">✦</span>
+<span class="">DIGITAL COMMERCE</span>
+<span class="text-ink/60">✦</span>
+<span class="">CUSTOM SOFTWARE</span>
+<span class="text-ink/60">✦</span>
+<span class="">AI AGENTS</span>
+<span class="text-ink/60">✦</span>
+<span class="">3D VISUALS</span>
+<span class="text-ink/60">✦</span>
+<span class="">CONSULTING</span>
+<span class="text-ink/60">✦</span>
+<span class="">NEXT-GEN PRODUCTS</span>
+<span class="text-ink/60">✦</span>
+<span class="">DIGITAL COMMERCE</span>
+<span class="text-ink/60">✦</span>
+</div>
+</div>
+<!-- 4. REDESIGNED SERVICES SECTION (Ink #0E1A13 background with tumbling sticker pile) -->
+<section class="w-full bg-[#0E1A13] text-[#F6F1E8] py-20 px-8 lg:px-16 min-h-[960px] relative overflow-hidden flex flex-col justify-between" id="services" style="background-image: radial-gradient(rgba(181, 139, 90, 0.18) 1.2px, transparent 1.2px); background-size: 32px 32px;">
+<!-- Massive oversized cropped five-arm star emblem in Forest green (#2F5A3C) at 15% opacity -->
+<div class="absolute -right-24 -bottom-36 w-[820px] h-[820px] opacity-15 pointer-events-none select-none -rotate-12 z-0">
+<img alt="" class="w-full h-full object-contain filter hue-rotate-30 brightness-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZax3w8Ixpz5A9l0ILX2W408YvtIq2_gAwjWO32eajGrumAp57plQpeYQ0N27u-Ms__6VKBI0CwttGcoqEj17TaCGDslDJKcRgOuRduf045hP2JGxnsbHYAktu7NGPMUaHtKTtfnLBl5PX7_CXod-m3WJmPrtcatUxTYCA-O67W5l7mE5xHsIxpj6ERH-QzwXCz9eq0sin0AhTRELF5I_DXo4LnHsrBdIXUGvT8VTnkr2RdD5ZmbvfEYyYIVQCaQrj3x4">
+</div>
+<!-- TOP AREA: Typography & Direct Action -->
+<div class="relative z-10 max-w-[1440px] mx-auto w-full">
+<div class="flex flex-col lg:flex-row items-start justify-between gap-8 mb-12">
+<!-- Top-Left -->
+<div>
+<span class="font-mono text-xs font-semibold text-[#B58B5A] tracking-widest uppercase block mb-4">01 / SERVICES</span>
+<h2 class="font-headline font-semibold text-6xl md:text-8xl lg:text-[115px] leading-[0.92] tracking-tight text-[#F6F1E8]">
+          Everything your<br>
+          business <em class="font-normal italic text-[#B58B5A]">needs.</em>
+</h2>
+</div>
+<!-- Top-Right -->
+<div class="flex flex-col items-start lg:items-end lg:text-right pt-2 lg:pt-4">
+<p class="font-body text-[#F6F1E8]/70 text-lg max-w-sm leading-relaxed">
+          Software, AI, 3D and strategy. One team, one place.
+        </p>
+<a class="bg-[#B58B5A] text-[#0E1A13] font-medium px-7 py-3 rounded-full hover:brightness-110 transition shadow-lg inline-flex items-center gap-2 mt-4 font-body text-sm" href="#contact">
+<span class="">Book a call</span>
+<span class="font-bold">↗</span>
+</a>
+</div>
+</div>
+<!-- FILTER ROW (above the pile) -->
+<div class="flex flex-wrap items-center gap-2.5 pb-8 border-b border-white/10" id="services-filter-bar">
+<button class="filter-tab active font-mono text-xs tracking-wider uppercase px-4 py-2 rounded-full border border-[#B58B5A] bg-[#B58B5A]/25 text-[#F6F1E8] transition-all flex items-center gap-2" data-filter="all">
+        ALL
+      </button>
+<button class="filter-tab font-mono text-xs tracking-wider uppercase px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-[#F6F1E8]/70 hover:text-[#F6F1E8] hover:border-white/20 transition-all flex items-center gap-2" data-filter="software">
+<span class="w-2 h-2 rounded-full bg-[#B58B5A]"></span>
+        CUSTOM SOFTWARE
+      </button>
+<button class="filter-tab font-mono text-xs tracking-wider uppercase px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-[#F6F1E8]/70 hover:text-[#F6F1E8] hover:border-white/20 transition-all flex items-center gap-2" data-filter="ai">
+<span class="w-2 h-2 rounded-full bg-[#F6F1E8]"></span>
+        AI &amp; WORKFLOW
+      </button>
+<button class="filter-tab font-mono text-xs tracking-wider uppercase px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-[#F6F1E8]/70 hover:text-[#F6F1E8] hover:border-white/20 transition-all flex items-center gap-2" data-filter="3d">
+<span class="w-2 h-2 rounded-full bg-[#2F5A3C]"></span>
+        3D &amp; PRODUCT
+      </button>
+<button class="filter-tab font-mono text-xs tracking-wider uppercase px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-[#F6F1E8]/70 hover:text-[#F6F1E8] hover:border-white/20 transition-all flex items-center gap-2" data-filter="consulting">
+<span class="w-2 h-2 rounded-full border border-[#B58B5A]"></span>
+        BUSINESS CONSULTING
+      </button>
+</div>
+</div>
+<!-- THE PILE: Tumbling sticker heap piling up organically from bottom -->
+<div class="relative z-20 w-full max-w-[1440px] mx-auto mt-10 mb-[-1.5rem] flex flex-col items-center justify-end min-h-[480px]">
+<!-- Floating Tooltip Card (Hidden by default, triggered on click) -->
+<div class="hidden absolute top-0 z-50 bg-[#0E1A13]/95 backdrop-blur-xl border border-[#B58B5A]/60 rounded-2xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] max-w-sm transition-all duration-300" id="services-tooltip">
+<div class="flex items-center justify-between gap-4 mb-2">
+<span class="font-mono text-xs font-bold text-[#B58B5A] uppercase tracking-wider" id="tooltip-category">CATEGORY</span>
+<button class="text-white/40 hover:text-white text-xs font-mono" id="tooltip-close" type="button">✕</button>
+</div>
+<h4 class="font-headline font-semibold text-xl text-[#F6F1E8] mb-1.5" id="tooltip-title">Title</h4>
+<p class="font-body text-xs text-[#F6F1E8]/75 mb-3 leading-relaxed" id="tooltip-desc">Description</p>
+<a class="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#B58B5A] hover:underline" href="#contact">
+        Learn more ↗
+      </a>
+</div>
+<!-- Organic Tumbling Heap Layers (Wider at base, narrower at top) -->
+<!-- Top Narrow Heap Tier -->
+<div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 -mb-3 z-30 select-none">
+<!-- AI Agents -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[19px] bg-[#F6F1E8] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[5deg]" data-category="ai" data-desc="Autonomous LLM swarms and workflow agents built to resolve complex operations around the clock." data-title="AI Agents">
+<span class="material-symbols-outlined text-lg">neurology</span>
+<span class="">AI Agents</span>
+</div>
+<!-- Strategy -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-transparent border-[1.5px] border-[#B58B5A] text-[#F6F1E8] backdrop-blur-sm shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[16deg]" data-category="consulting" data-desc="Comprehensive strategic advisory to align product architecture with venture-backed expansion." data-title="Strategy">
+<span class="material-symbols-outlined text-lg text-[#B58B5A]">explore</span>
+<span class="">Strategy</span>
+</div>
+<!-- 3D Visualization -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[19px] bg-[#2F5A3C] text-[#F6F1E8] border border-[#5E7F62]/50 shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[12deg]" data-category="3d" data-desc="Spatial interactive canvases, WebGL visualizers, and digital twin environments." data-title="3D Visualization">
+<span class="material-symbols-outlined text-lg text-[#F6F1E8]">view_in_ar</span>
+<span class="">3D Visualization</span>
+</div>
+<!-- Web Apps -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-[#B58B5A] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[8deg]" data-category="software" data-desc="High-performance custom web applications with lightning fast interfaces and zero bloat." data-title="Web Apps">
+<span class="material-symbols-outlined text-lg">code</span>
+<span class="">Web Apps</span>
+</div>
+</div>
+<!-- Middle Tier (Stacked & Overlapping) -->
+<div class="flex flex-wrap items-center justify-center gap-3 sm:gap-5 -mb-3 z-20 select-none">
+<!-- Tech Audits -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[19px] bg-transparent border-[1.5px] border-[#B58B5A] text-[#F6F1E8] backdrop-blur-sm shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[11deg]" data-category="consulting" data-desc="Deep architectural audits to uncover bottlenecks, reduce technical debt, and cut cloud burn." data-title="Tech Audits">
+<span class="material-symbols-outlined text-lg text-[#B58B5A]">track_changes</span>
+<span class="">Tech Audits</span>
+</div>
+<!-- Chatbots -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[21px] bg-[#F6F1E8] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[16deg]" data-category="ai" data-desc="Domain-grounded generative chat engines trained on your proprietary enterprise documentation." data-title="Chatbots">
+<span class="material-symbols-outlined text-lg">smart_toy</span>
+<span class="">Chatbots</span>
+</div>
+<!-- Product Models -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-[#2F5A3C] text-[#F6F1E8] border border-[#5E7F62]/50 shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[15deg]" data-category="3d" data-desc="Pixel-perfect digital models optimized for cross-platform real-time 3D configuration." data-title="Product Models">
+<span class="material-symbols-outlined text-lg text-[#F6F1E8]">deployed_code</span>
+<span class="">Product Models</span>
+</div>
+<!-- Mobile Apps -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-[#B58B5A] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[14deg]" data-category="software" data-desc="Native iOS and Android systems engineered with fluid gestures and instant load states." data-title="Mobile Apps">
+<span class="material-symbols-outlined text-lg">smartphone</span>
+<span class="">Mobile Apps</span>
+</div>
+<!-- Roadmaps -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[19px] bg-transparent border-[1.5px] border-[#B58B5A] text-[#F6F1E8] backdrop-blur-sm shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[7deg]" data-category="consulting" data-desc="Precise multi-quarter engineering milestones prioritizing highest ROI releases." data-title="Roadmaps">
+<span class="material-symbols-outlined text-lg text-[#B58B5A]">signpost</span>
+<span class="">Roadmaps</span>
+</div>
+<!-- Automations -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-[#F6F1E8] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[14deg]" data-category="ai" data-desc="End-to-end event-triggered pipeline automations saving hundreds of manual team hours." data-title="Automations">
+<span class="material-symbols-outlined text-lg">bolt</span>
+<span class="">Automations</span>
+</div>
+</div>
+<!-- Lower Wider Tier (Spread across viewport edges) -->
+<div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 -mb-3 z-15 select-none w-full">
+<!-- Dashboards -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[19px] bg-[#B58B5A] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[18deg]" data-category="software" data-desc="Dense real-time command dashboards with sub-second websocket streaming updates." data-title="Dashboards">
+<span class="material-symbols-outlined text-lg">data_thresholding</span>
+<span class="">Dashboards</span>
+</div>
+<!-- Renders -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[21px] bg-[#2F5A3C] text-[#F6F1E8] border border-[#5E7F62]/50 shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[7deg]" data-category="3d" data-desc="Photorealistic product renders and cinematic motion ready for campaign launches." data-title="Renders">
+<span class="material-symbols-outlined text-lg text-[#F6F1E8]">photo_camera</span>
+<span class="">Renders</span>
+</div>
+<!-- CRM Workflows -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-[#F6F1E8] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[9deg]" data-category="ai" data-desc="Autonomous lead classification, context-aware drafting, and intelligent deal routing." data-title="CRM Workflows">
+<span class="material-symbols-outlined text-lg">hub</span>
+<span class="">CRM Workflows</span>
+</div>
+<!-- APIs -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[19px] bg-[#B58B5A] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[6deg]" data-category="software" data-desc="Ultra low-latency resilient GraphQL and REST APIs handling heavy throughput." data-title="APIs">
+<span class="material-symbols-outlined text-lg">api</span>
+<span class="">APIs</span>
+</div>
+<!-- Process Design -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-transparent border-[1.5px] border-[#B58B5A] text-[#F6F1E8] backdrop-blur-sm shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[18deg]" data-category="consulting" data-desc="Re-engineering operational org charts into rapid deployment software loops." data-title="Process Design">
+<span class="material-symbols-outlined text-lg text-[#B58B5A]">schema</span>
+<span class="">Process Design</span>
+</div>
+<!-- Animations -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-[#2F5A3C] text-[#F6F1E8] border border-[#5E7F62]/50 shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[10deg]" data-category="3d" data-desc="Dynamic physics-based motion graphics and micro-interactions." data-title="Animations">
+<span class="material-symbols-outlined text-lg text-[#F6F1E8]">motion_photos_on</span>
+<span class="">Animations</span>
+</div>
+</div>
+<!-- Bottom Base Tier (Heaviest base spilling naturally off bottom edge) -->
+<div class="flex flex-wrap items-center justify-center gap-3 sm:gap-5 z-10 select-none w-full translate-y-2">
+<!-- SaaS Platforms -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-[#B58B5A] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[12deg]" data-category="software" data-desc="Turnkey multi-tenant SaaS architectures complete with billing, auth, and analytics." data-title="SaaS Platforms">
+<span class="material-symbols-outlined text-lg">cloud</span>
+<span class="">SaaS Platforms</span>
+</div>
+<!-- Lead Bots -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[19px] bg-[#F6F1E8] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[21deg]" data-category="ai" data-desc="Inbound conversion bots that qualify high-intent prospects and book calendars." data-title="Lead Bots">
+<span class="material-symbols-outlined text-lg">support_agent</span>
+<span class="">Lead Bots</span>
+</div>
+<!-- AR Previews -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-[#2F5A3C] text-[#F6F1E8] border border-[#5E7F62]/50 shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[22deg]" data-category="3d" data-desc="Instant web-based augmented reality product staging for luxury retail &amp; commerce." data-title="AR Previews">
+<span class="material-symbols-outlined text-lg text-[#F6F1E8]">view_in_ar_new</span>
+<span class="">AR Previews</span>
+</div>
+<!-- Team Training -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[19px] bg-transparent border-[1.5px] border-[#B58B5A] text-[#F6F1E8] backdrop-blur-sm shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform -rotate-[23deg]" data-category="consulting" data-desc="Hands-on enablement upskilling in-house developers on modern AI and reactive tooling." data-title="Team Training">
+<span class="material-symbols-outlined text-lg text-[#B58B5A]">groups</span>
+<span class="">Team Training</span>
+</div>
+<!-- Websites -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[21px] bg-[#B58B5A] text-[#0E1A13] shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[20deg]" data-category="software" data-desc="Award-winning digital flagship storefronts crafted for category-defining brands." data-title="Websites">
+<span class="material-symbols-outlined text-lg">language</span>
+<span class="">Websites</span>
+</div>
+<!-- Advisory -->
+<div class="service-pill cursor-pointer px-7 py-3.5 rounded-full font-body font-medium text-[20px] bg-transparent border-[1.5px] border-[#B58B5A] text-[#F6F1E8] backdrop-blur-sm shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 transform rotate-[5deg]" data-category="consulting" data-desc="Fractional CTO leadership on architecture, equity planning, and enterprise governance." data-title="Advisory">
+<span class="material-symbols-outlined text-lg text-[#B58B5A]">verified</span>
+<span class="">Advisory</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SCRIPT: Services Pile Interactive Filter & Tooltip -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const servicePills = document.querySelectorAll('.service-pill');
+    const tooltip = document.getElementById('services-tooltip');
+    const tooltipTitle = document.getElementById('tooltip-title');
+    const tooltipDesc = document.getElementById('tooltip-desc');
+    const tooltipCategory = document.getElementById('tooltip-category');
+    const tooltipClose = document.getElementById('tooltip-close');
+
+    // Filter functionality
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Reset tabs styling
+        filterTabs.forEach(t => {
+          t.classList.remove('border-[#B58B5A]', 'bg-[#B58B5A]/25', 'text-[#F6F1E8]');
+          t.classList.add('border-white/10', 'bg-white/[0.04]', 'text-[#F6F1E8]/70');
+        });
+
+        // Activate clicked tab
+        tab.classList.remove('border-white/10', 'bg-white/[0.04]', 'text-[#F6F1E8]/70');
+        tab.classList.add('border-[#B58B5A]', 'bg-[#B58B5A]/25', 'text-[#F6F1E8]');
+
+        const category = tab.getAttribute('data-filter');
+
+        servicePills.forEach(pill => {
+          const pillCat = pill.getAttribute('data-category');
+          if (category === 'all' || pillCat === category) {
+            pill.style.opacity = '1';
+            pill.style.pointerEvents = 'auto';
+            pill.style.filter = 'none';
+          } else {
+            pill.style.opacity = '0.3';
+            pill.style.filter = 'grayscale(60%)';
+          }
+        });
+      });
+    });
+
+    // Pill click triggers tooltip card
+    servicePills.forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const title = pill.getAttribute('data-title');
+        const desc = pill.getAttribute('data-desc');
+        const cat = pill.getAttribute('data-category');
+
+        tooltipTitle.textContent = title;
+        tooltipDesc.textContent = desc;
+        tooltipCategory.textContent = cat === 'ai' ? 'AI & WORKFLOW' : cat === 'software' ? 'CUSTOM SOFTWARE' : cat === '3d' ? '3D & PRODUCT' : 'BUSINESS CONSULTING';
+
+        tooltip.classList.remove('hidden');
+        tooltip.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+
+    if (tooltipClose) {
+      tooltipClose.addEventListener('click', () => {
+        tooltip.classList.add('hidden');
+      });
+    }
+  });
+</script>
+<!-- 5. PRODUCTS SECTION (Ink #0E1A13 background) -->
+<section class="w-full bg-[#F6F1E8] text-[#0E1A13] py-28 px-6 lg:px-12 relative overflow-hidden border-t border-ink/10" id="products">
+<div class="max-w-[1440px] mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+<!-- Left Column (3 cols) -->
+<div class="lg:col-span-3 flex flex-col items-start pr-0 lg:pr-4">
+<span class="font-mono text-xs font-bold text-bronze tracking-[0.25em] uppercase block mb-3">02 / OUR PRODUCTS</span>
+<h2 class="font-headline font-semibold text-5xl sm:text-6xl lg:text-5xl xl:text-6xl tracking-[-0.03em] text-ink leading-[1.08] mb-2">
+          Products built to <span class="font-headline italic font-normal text-bronze">work.</span>
+</h2>
+<!-- Bronze Squiggle Underline -->
+<svg class="w-44 h-4 text-bronze mb-6 fill-none stroke-current" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 170 16">
+<path d="M2 10 Q 22 2, 42 10 T 82 10 T 122 10 T 162 10 T 168 10"></path>
+</svg>
+<p class="font-body text-base text-ink/70 leading-relaxed mb-8 max-w-sm">
+          Built in-house. Shipped, tested, live.
+        </p>
+<a class="group inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-ink border-b-2 border-ink pb-1 hover:text-bronze hover:border-bronze transition-colors" href="#contact">
+<span class="">SEE ALL PRODUCTS</span>
+<span class="transition-transform group-hover:translate-x-1">→</span>
+</a>
+</div>
+<!-- Right Column: 4 tall rounded cards in 9 cols -->
+<div class="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+<!-- Card 1: FinMatrix -->
+<div class="group bg-white rounded-[24px] border border-ink/10 shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden h-[480px]">
+<!-- Top 70%: Forest background with floating finance mockup -->
+<div class="h-[70%] bg-[#2F5A3C] p-5 flex flex-col justify-center items-center relative overflow-hidden select-none">
+<div class="absolute -right-12 -top-12 w-40 h-40 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+<!-- Floating glass finance chart mockup -->
+<div class="w-full max-w-[190px] bg-ink/80 backdrop-blur-md rounded-xl p-3 border border-white/15 shadow-xl transform -rotate-3 group-hover:rotate-0 transition-transform duration-300">
+<div class="flex items-center justify-between mb-2">
+<span class="font-mono text-[9px] text-cream/70 uppercase tracking-wider">TREASURY ARB</span>
+<span class="font-mono text-[9px] font-bold text-mist">+31.8%</span>
+</div>
+<svg class="w-full h-14 mb-2" fill="none" viewBox="0 0 160 50">
+<path d="M0 42 Q 35 30, 70 38 T 120 12 T 160 5" fill="none" stroke="#B58B5A" stroke-width="2"></path>
+<path d="M0 42 Q 35 30, 70 38 T 120 12 T 160 5 L 160 50 L 0 50 Z" fill="#B58B5A" opacity="0.15"></path>
+<circle cx="120" cy="12" fill="#B58B5A" r="2.5"></circle>
+<circle cx="160" cy="5" fill="#9FB59C" r="2.5"></circle>
+</svg>
+<div class="flex justify-between items-center text-[8px] font-mono text-cream/50 border-t border-white/10 pt-1.5">
+<span class="">SURVEILLANCE</span>
+<span class="text-bronze font-bold">ONLINE</span>
+</div>
+</div>
+</div>
+<!-- Bottom 30%: White Strip -->
+<div class="h-[30%] bg-white p-5 flex items-center justify-between border-t border-ink/5">
+<div>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-bronze"></span>
+<span class="font-mono text-[10px] font-bold tracking-wider text-bronze uppercase">LIVE</span>
+</div>
+<h3 class="font-headline font-semibold text-lg text-ink leading-tight">FinMatrix</h3>
+<p class="font-body text-xs text-ink/70">Money, clearly tracked.</p>
+</div>
+<a aria-label="FinMatrix details" class="w-9 h-9 rounded-full bg-bronze/10 text-bronze group-hover:bg-bronze group-hover:text-ink flex items-center justify-center transition-colors shrink-0 shadow-sm" href="#contact">
+<span class="font-bold text-sm">↗</span>
+</a>
+</div>
+</div>
+<!-- Card 2: MetroMatrix -->
+<div class="group bg-white rounded-[24px] border border-ink/10 shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden h-[480px]">
+<!-- Top 70%: Bronze background with floating mesh/routing mockup -->
+<div class="h-[70%] bg-bronze p-5 flex flex-col justify-center items-center relative overflow-hidden select-none">
+<div class="absolute -left-10 -bottom-10 w-36 h-36 rounded-full bg-white/20 blur-2xl pointer-events-none"></div>
+<!-- Floating Fleet Routing Mockup -->
+<div class="w-full max-w-[190px] bg-ink/85 backdrop-blur-md rounded-xl p-3 border border-white/20 shadow-xl transform rotate-3 group-hover:rotate-0 transition-transform duration-300 text-cream">
+<div class="flex items-center justify-between mb-2 text-mist">
+<span class="font-mono text-[9px] uppercase tracking-wider">ROUTING MESH</span>
+<span class="material-symbols-outlined text-sm text-bronze">hub</span>
+</div>
+<div class="relative w-full h-16 rounded-lg bg-black/30 border border-white/10 p-2 flex flex-col justify-between overflow-hidden mb-2">
+<div class="flex justify-between items-center text-[8px] font-mono text-mist">
+<span class="">NODES</span>
+<span class="text-bronze font-bold">12,480</span>
+</div>
+<div class="flex items-center justify-center gap-2 py-1">
+<span class="w-2 h-2 rounded-full bg-bronze animate-ping"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-mist"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-cream/70"></span>
+</div>
+<div class="text-[8px] font-mono text-cream/60 truncate">LATENCY &lt; 4ms</div>
+</div>
+<div class="flex justify-between items-center text-[8px] font-mono text-cream/70 pt-1 border-t border-white/10">
+<span class="">DISPATCH</span>
+<span class="text-mist font-bold">ACTIVE</span>
+</div>
+</div>
+</div>
+<!-- Bottom 30%: White Strip -->
+<div class="h-[30%] bg-white p-5 flex items-center justify-between border-t border-ink/5">
+<div>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-bronze"></span>
+<span class="font-mono text-[10px] font-bold tracking-wider text-bronze uppercase">LIVE</span>
+</div>
+<h3 class="font-headline font-semibold text-lg text-ink leading-tight">MetroMatrix</h3>
+<p class="font-body text-xs text-ink/70">Every route, mapped.</p>
+</div>
+<a aria-label="MetroMatrix details" class="w-9 h-9 rounded-full bg-bronze/10 text-bronze group-hover:bg-bronze group-hover:text-ink flex items-center justify-center transition-colors shrink-0 shadow-sm" href="#contact">
+<span class="font-bold text-sm">↗</span>
+</a>
+</div>
+</div>
+<!-- Card 3: CronLeadMagnet -->
+<div class="group bg-white rounded-[24px] border border-ink/10 shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden h-[480px] relative">
+<!-- Tilted Fresh Sticker -->
+<div class="absolute top-3 right-3 z-20 transform rotate-12">
+<span class="font-mono text-[9px] font-black px-2.5 py-0.5 rounded-full bg-bronze text-ink shadow-md border border-ink/20">Fresh</span>
+</div>
+<!-- Top 70%: Ink background with faint dotted grid & lead pipeline mockup -->
+<div class="h-[70%] bg-ink p-5 flex flex-col justify-center items-center relative overflow-hidden select-none">
+<!-- Subtle Grid Background -->
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F6F1E8_1px,transparent_1px)] [background-size:12px_12px]"></div>
+<!-- Floating Lead Pipeline Mockup -->
+<div class="w-full max-w-[190px] bg-white/[0.06] backdrop-blur-md rounded-xl p-3 border border-white/15 shadow-xl transform -rotate-2 group-hover:rotate-0 transition-transform duration-300 text-cream relative z-10">
+<div class="flex items-center justify-between mb-2">
+<span class="font-mono text-[9px] uppercase tracking-wider text-mist">PIPELINE</span>
+<span class="w-2 h-2 rounded-full bg-forest animate-ping"></span>
+</div>
+<div class="space-y-1.5 mb-2.5">
+<div class="bg-white/10 rounded px-2 py-1 flex items-center justify-between font-mono text-[8px]">
+<span class="text-cream/80">Verify Rate</span>
+<span class="text-bronze font-bold">99.4%</span>
+</div>
+<div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+<div class="bg-bronze h-full w-[99.4%]"></div>
+</div>
+</div>
+<div class="flex justify-between items-center text-[8px] font-mono text-cream/50 border-t border-white/10 pt-1.5">
+<span class="">ENRICH VELOCITY</span>
+<span class="text-cream font-bold">50k/HR</span>
+</div>
+</div>
+</div>
+<!-- Bottom 30%: White Strip -->
+<div class="h-[30%] bg-white p-5 flex items-center justify-between border-t border-ink/5">
+<div>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-bronze"></span>
+<span class="font-mono text-[10px] font-bold tracking-wider text-bronze uppercase">BETA</span>
+</div>
+<h3 class="font-headline font-semibold text-lg text-ink leading-tight">CronLeadMagnet</h3>
+<p class="font-body text-xs text-ink/70">Leads, on autopilot.</p>
+</div>
+<a aria-label="CronLeadMagnet details" class="w-9 h-9 rounded-full bg-bronze/10 text-bronze group-hover:bg-bronze group-hover:text-ink flex items-center justify-center transition-colors shrink-0 shadow-sm" href="#contact">
+<span class="font-bold text-sm">↗</span>
+</a>
+</div>
+</div>
+<!-- Card 4: Trading App -->
+<div class="group bg-white rounded-[24px] border border-ink/10 shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col overflow-hidden h-[480px]">
+<!-- Top 70%: Sand background with phone-style candlestick mockup -->
+<div class="h-[70%] bg-[#E9E0D0] p-5 flex flex-col justify-center items-center relative overflow-hidden select-none">
+<div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-bronze/20 blur-xl pointer-events-none"></div>
+<!-- Phone style candlestick chart UI mockup -->
+<div class="w-full max-w-[170px] bg-ink text-cream rounded-2xl p-3 border border-ink/20 shadow-2xl transform rotate-2 group-hover:rotate-0 transition-transform duration-300">
+<div class="flex items-center justify-between mb-2 font-mono text-[8px]">
+<span class="text-bronze font-bold">ETH/USD</span>
+<span class="text-mist">3,421.10</span>
+</div>
+<!-- Candlestick mockup bars -->
+<div class="h-16 flex items-end justify-between gap-1 px-1 py-1 bg-black/40 rounded-lg border border-white/5 mb-2">
+<div class="w-1.5 h-8 bg-forest rounded-sm relative"><div class="w-0.5 h-11 bg-forest absolute -top-1.5 left-0.5 -z-10"></div></div>
+<div class="w-1.5 h-11 bg-forest rounded-sm relative"><div class="w-0.5 h-13 bg-forest absolute -top-1 left-0.5 -z-10"></div></div>
+<div class="w-1.5 h-6 bg-bronze rounded-sm relative"><div class="w-0.5 h-9 bg-bronze absolute -top-1.5 left-0.5 -z-10"></div></div>
+<div class="w-1.5 h-10 bg-forest rounded-sm relative"><div class="w-0.5 h-12 bg-forest absolute -top-1 left-0.5 -z-10"></div></div>
+<div class="w-1.5 h-12 bg-forest rounded-sm relative"><div class="w-0.5 h-14 bg-forest absolute -top-1 left-0.5 -z-10"></div></div>
+</div>
+<div class="flex justify-between items-center text-[7px] font-mono text-cream/60">
+<span class="">LATENCY [0.3ms]</span>
+<span class="text-bronze font-bold">SPREAD CAPTURE</span>
+</div>
+</div>
+</div>
+<!-- Bottom 30%: White Strip -->
+<div class="h-[30%] bg-white p-5 flex items-center justify-between border-t border-ink/5">
+<div>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-bronze"></span>
+<span class="font-mono text-[10px] font-bold tracking-wider text-bronze uppercase">BETA</span>
+</div>
+<h3 class="font-headline font-semibold text-lg text-ink leading-tight">Trading App</h3>
+<p class="font-body text-xs text-ink/70">Trade with clarity.</p>
+</div>
+<a aria-label="Trading App details" class="w-9 h-9 rounded-full bg-bronze/10 text-bronze group-hover:bg-bronze group-hover:text-ink flex items-center justify-center transition-colors shrink-0 shadow-sm" href="#contact">
+<span class="font-bold text-sm">↗</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. HOW WE WORK (Cream #F6F1E8 background) -->
+<section class="w-full bg-cream text-ink py-28 px-6 lg:px-12 relative overflow-hidden" id="playbook">
+<div class="max-w-[1440px] mx-auto">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+<div>
+<span class="font-mono text-xs font-bold text-sage tracking-[0.25em] uppercase block mb-3">03 / PLAYBOOK</span>
+<h2 class="font-headline font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em] text-ink leading-tight">
+            How we <span class="font-headline italic font-normal text-bronze">ship.</span>
+</h2>
+</div>
+<p class="font-body text-base text-ink/70 max-w-sm mt-4 md:mt-0">
+          No endless discovery meetings. Direct pipeline from roadmap to scale.
+        </p>
+</div>
+<!-- 4 Steps Connected Layout -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+<!-- Step 1 -->
+<div class="bg-white p-8 rounded-[24px] border border-ink/10 shadow-sm hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+<div>
+<span class="font-mono text-4xl font-bold text-bronze block mb-4">01</span>
+<h3 class="font-headline font-semibold text-2xl text-ink mb-2">Discover</h3>
+<p class="font-body text-sm text-ink/75 leading-relaxed">
+              Audit bottlenecks fast.
+            </p>
+</div>
+<div class="mt-8 pt-4 border-t border-ink/5">
+</div>
+</div>
+<!-- Step 2 -->
+<div class="bg-white p-8 rounded-[24px] border border-ink/10 shadow-sm hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+<div>
+<span class="font-mono text-4xl font-bold text-bronze block mb-4">02</span>
+<h3 class="font-headline font-semibold text-2xl text-ink mb-2">Design</h3>
+<p class="font-body text-sm text-ink/75 leading-relaxed">
+              High-fidelity prototype.
+            </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="bg-white p-8 rounded-[24px] border border-ink/10 shadow-sm hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+<div>
+<span class="font-mono text-4xl font-bold text-bronze block mb-4">03</span>
+<h3 class="font-headline font-semibold text-2xl text-ink mb-2">Build</h3>
+<p class="font-body text-sm text-ink/75 leading-relaxed">
+              Sprint-based deployment.
+            </p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="bg-white p-8 rounded-[24px] border border-ink/10 shadow-sm hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+<div>
+<span class="font-mono text-4xl font-bold text-bronze block mb-4">04</span>
+<h3 class="font-headline font-semibold text-2xl text-ink mb-2">Scale</h3>
+<p class="font-body text-sm text-ink/75 leading-relaxed">
+              Autonomous long-term velocity.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. NUMBERS SECTION (Ink #0E1A13 background) -->
+<section class="w-full bg-ink text-cream py-24 px-6 lg:px-12 relative overflow-hidden border-y border-white/5">
+<div class="max-w-[1440px] mx-auto">
+<div class="mb-12 text-center md:text-left"><span class="font-mono text-xs font-bold text-mist tracking-[0.25em] uppercase block mb-3">04 / PERFORMANCE</span><h2 class="font-headline font-semibold text-4xl sm:text-5xl lg:text-6xl tracking-[-0.03em] text-cream leading-tight">Built for <span class="font-headline italic font-normal text-bronze">results,</span> not noise.</h2></div><div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Stat 1 -->
+<div class="relative bg-white/[0.03] border border-white/10 hover:border-bronze/40 p-10 rounded-[28px] flex flex-col justify-between hover:-translate-y-2 transition-all duration-300">
+<div class="flex items-center justify-between mb-8">
+<span class="material-symbols-outlined text-bronze text-3xl">verified_user</span>
+<span class="transform rotate-3 font-mono text-[10px] font-black px-3 py-1 rounded-full bg-bronze text-ink">UPTIME</span>
+</div>
+<div>
+<div class="font-mono font-bold text-6xl lg:text-7xl text-cream mb-3 tracking-tight">99.8%</div>
+<p class="font-body text-sm text-cream/70">Sub-second fault-tolerant reliability.</p>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="relative bg-white/[0.03] border border-white/10 hover:border-bronze/40 p-10 rounded-[28px] flex flex-col justify-between hover:-translate-y-2 transition-all duration-300">
+<div class="flex items-center justify-between mb-8">
+<span class="material-symbols-outlined text-mist text-3xl">speed</span>
+<span class="transform -rotate-3 font-mono text-[10px] font-black px-3 py-1 rounded-full bg-forest text-mist">BENCHMARK</span>
+</div>
+<div>
+<div class="font-mono font-bold text-6xl lg:text-7xl text-cream mb-3 tracking-tight">4.2x</div>
+<p class="font-body text-sm text-cream/70">Verified acceleration across client workflows.</p>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="relative bg-white/[0.03] border border-white/10 hover:border-bronze/40 p-10 rounded-[28px] flex flex-col justify-between hover:-translate-y-2 transition-all duration-300">
+<div class="flex items-center justify-between mb-8">
+<span class="material-symbols-outlined text-bronze text-3xl">rocket_launch</span>
+<span class="transform rotate-2 font-mono text-[10px] font-black px-3 py-1 rounded-full bg-cream text-ink">SHIPPED</span>
+</div>
+<div>
+<div class="font-mono font-bold text-6xl lg:text-7xl text-cream mb-3 tracking-tight">40+</div>
+<p class="font-body text-sm text-cream/70">Production grade digital systems shipped globally.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. WORK & SOCIAL PROOF (Cream #F6F1E8 background) -->
+<section class="w-full bg-cream text-ink py-28 px-6 lg:px-12 relative overflow-hidden" id="work">
+<div class="max-w-[1440px] mx-auto">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+<div>
+<span class="font-mono text-xs font-bold text-sage tracking-[0.25em] uppercase block mb-3">05 / PROOF</span>
+<h2 class="font-headline font-semibold text-5xl sm:text-6xl lg:text-7xl tracking-[-0.03em] text-ink leading-tight">
+            Recent <span class="font-headline italic font-normal text-bronze">drops.</span>
+</h2>
+</div>
+</div>
+<!-- Visual Grid of Recent Work -->
+<!-- Punchy Testimonial Card -->
+<div class="relative overflow-hidden rounded-[32px] bg-[#0E1A13] border border-forest/50 shadow-2xl mb-12 min-h-[700px] lg:min-h-[740px] flex flex-col justify-center items-center p-6 sm:p-12 lg:p-16 select-none">
+<!-- Section Micro-Tag Top Left -->
+<div class="absolute top-8 left-8 sm:left-10 z-20 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-bronze"></span>
+</div>
+<!-- Typographic Background: Oversized letters of 'reviews' + quote glyphs & hashtag badges -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden select-none">
+<!-- Huge cropped background letters -->
+<span class="absolute -top-28 -left-16 font-headline font-semibold text-[380px] sm:text-[460px] leading-none text-forest/90 -rotate-[18deg] select-none">r</span>
+<span class="absolute -top-32 left-[20%] font-headline font-semibold text-[400px] sm:text-[500px] leading-none text-bronze/85 rotate-[22deg] select-none">e</span>
+<span class="absolute -top-24 right-[-4%] font-headline font-semibold text-[380px] sm:text-[480px] leading-none text-forest/85 -rotate-[35deg] select-none">v</span>
+<span class="absolute top-[28%] -left-20 font-headline font-semibold text-[360px] sm:text-[440px] leading-none text-forest/80 rotate-[15deg] select-none">i</span>
+<span class="absolute -bottom-36 left-[22%] sm:left-[26%] font-headline font-semibold text-[420px] sm:text-[520px] leading-none text-forest/90 -rotate-[8deg] select-none">e</span>
+<span class="absolute -bottom-32 right-[-6%] font-headline font-semibold text-[420px] sm:text-[540px] leading-none text-bronze/80 rotate-[16deg] select-none">w</span>
+<!-- Cut-in decorative quotation marks inside letters -->
+<div class="absolute top-24 left-16 sm:left-24 text-ink text-7xl sm:text-8xl font-headline font-bold -rotate-12 select-none opacity-90">“</div>
+<div class="absolute bottom-20 right-28 sm:right-36 text-ink text-7xl sm:text-8xl font-headline font-bold rotate-12 select-none opacity-90">”</div>
+<!-- Angled Cream Hashtag Badges -->
+<div class="absolute top-14 right-20 sm:right-32 -rotate-[24deg] bg-cream text-ink px-4 py-1.5 rounded-md shadow-xl border border-ink/20 flex items-center">
+<span class="font-mono font-bold text-xs uppercase tracking-[0.2em]">#REVIEW</span>
+</div>
+<div class="absolute bottom-24 left-6 sm:left-12 rotate-[68deg] bg-cream text-ink px-4 py-1.5 rounded-md shadow-xl border border-ink/20 flex items-center origin-left">
+<span class="font-mono font-bold text-xs uppercase tracking-[0.2em]">#TESTIMONIAL</span>
+</div>
+<div class="absolute top-1/2 right-6 sm:right-12 rotate-[12deg] bg-cream text-ink px-4 py-1.5 rounded-md shadow-xl border border-ink/20 flex items-center">
+<span class="font-mono font-bold text-xs uppercase tracking-[0.2em]">#SHIPPED</span>
+</div>
+<!-- Atmospheric Ambient Glows -->
+<div class="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-forest/30 blur-[130px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-bronze/20 blur-[120px]"></div>
+</div>
+<!-- Stacked & Floating Review Cards Container -->
+<div class="relative z-10 w-full max-w-[740px] my-auto pt-6">
+<!-- Background Card B (furthest behind, rotated +4deg, scale-90, opacity-50) -->
+<div class="absolute inset-0 bg-cream/50 rounded-[32px] border border-bronze/30 shadow-xl transform rotate-4 scale-90 translate-y-6 translate-x-4 pointer-events-none"></div>
+<!-- Background Card A (middle, rotated -5deg, scale-95, opacity-75) -->
+<div class="absolute inset-0 bg-cream/75 rounded-[32px] border border-bronze/30 shadow-xl transform -rotate-6 scale-95 -translate-y-3 -translate-x-3 pointer-events-none"></div>
+<!-- Foreground Main Card (Landscape, Cream #F6F1E8, subtle 1.5deg tilt, deep shadow) -->
+<div class="relative bg-[#F6F1E8] text-ink p-8 md:p-10 rounded-[32px] shadow-2xl border border-bronze/40 transform rotate-2 hover:rotate-0 transition-transform duration-300">
+<!-- Top Header Row -->
+<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full border-2 border-bronze overflow-hidden bg-forest/20 flex items-center justify-center font-headline font-bold text-lg text-ink shadow-sm shrink-0">
+            AV
+          </div>
+<div>
+<div class="font-body font-semibold text-xl text-ink leading-snug">Dr. Alistair Vance</div>
+<div class="font-mono text-xs uppercase tracking-wider text-ink/70 font-medium">CTO · NEXUS GLOBAL</div>
+<div class="flex items-center gap-1 text-bronze text-sm mt-1 select-none">
+<span class="">★</span><span class="">★</span><span class="">★</span><span class="">★</span><span class="">★</span>
+</div>
+</div>
+</div>
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ink/5 border border-ink/10 font-mono text-[11px] font-bold tracking-wider text-ink uppercase">
+<span class="w-2 h-2 rounded-full bg-bronze"></span>
+          VERIFIED CLIENT
+        </div>
+</div>
+<!-- Review Body Text -->
+<p class="font-body text-lg md:text-xl text-ink font-normal leading-relaxed mb-6">
+        “CRON shipped our entire multi-agent workflow in weeks. Straightforward, fast and effortless to work with. They made what is usually an excruciating engineering process feel simple.”
+      </p>
+<!-- Card Bottom Row -->
+<div class="pt-4 border-t border-ink/10 flex items-center justify-between">
+<span class="font-mono text-xs text-ink/60 uppercase tracking-wider">FinMatrix Integration · Q1 2026</span>
+</div>
+</div>
+<!-- Navigation Controls & Dots below card -->
+<div class="mt-8 flex items-center justify-center gap-6">
+<button aria-label="Previous review" class="w-10 h-10 rounded-full border border-bronze/60 bg-ink/70 text-cream flex items-center justify-center font-mono hover:bg-bronze hover:text-ink transition-colors shadow-lg" type="button">
+        &lt;
+      </button>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-bronze"></span>
+<span class="w-2 h-2 rounded-full bg-cream/40 hover:bg-cream/80 transition-colors cursor-pointer"></span>
+<span class="w-2 h-2 rounded-full bg-cream/40 hover:bg-cream/80 transition-colors cursor-pointer"></span>
+</div>
+<button aria-label="Next review" class="w-10 h-10 rounded-full border border-bronze/60 bg-ink/70 text-cream flex items-center justify-center font-mono hover:bg-bronze hover:text-ink transition-colors shadow-lg" type="button">
+        &gt;
+      </button>
+</div>
+</div>
+</div>
+<!-- Minimalist Enterprise Logo Ticker -->
+</div>
+</section>
+<!-- 9. CTA SECTION (Cream #F6F1E8 background container with Giant Subtle Star Motif) -->
+<section class="w-full bg-cream text-ink py-28 px-6 lg:px-12 relative overflow-hidden border-t border-ink/10" id="contact">
+<div class="max-w-[1440px] mx-auto relative">
+<!-- Giant Subtle Bronze Star Motif in Card Background -->
+<div class="relative bg-ink text-cream rounded-[32px] p-8 sm:p-16 lg:p-20 overflow-hidden shadow-2xl border border-white/10" style="background: radial-gradient(circle at 20% 30%, rgba(181, 139, 90, 0.12) 0%, transparent 45%), radial-gradient(circle at 85% 75%, rgba(47, 90, 60, 0.35) 0%, transparent 55%), linear-gradient(135deg, rgb(14, 26, 19) 0%, rgb(20, 38, 28) 50%, rgb(8, 16, 11) 100%);">
+<img alt="" class="absolute -right-20 -bottom-24 w-[480px] h-[480px] pointer-events-none -rotate-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADa2Ei6lF1TxEP5JobLs3AIJZfyHQ7wRJkc4nVik6C1wB1nbN8U8B3axx3d3_XZO7EDbUfLPejiDvINWrpT25p9mu7sTU7BdrfP52LwLWig_sSxKwSal-I3RrEry9agOcPbTkx4ib5FjSaQy484jq4Bj3iod5c-CaKgxPHUcOc_Si4b4h6XjteP7qEl3plbCrp--2_Tnv0H2pK6S53NcKkQO-SSXHjHh_DSC66zrUkNDHNvtg5daFH4sHiI11QQUAdYII">
+<div class="max-w-3xl relative z-10">
+<h2 class="font-headline font-semibold text-3xl sm:text-4xl lg:text-5xl tracking-[-0.03em] text-cream leading-[1.1] mb-4">
+            Let's build <span class="font-headline italic font-normal text-bronze">something.</span>
+</h2>
+<p class="font-body text-base sm:text-lg text-cream/70 mb-10 leading-relaxed max-w-xl">
+            Got a bold project? Drop your email and we'll reply within 24 hours.
+          </p>
+<!-- Sleek Inline Pill Input Bar -->
+<form class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-white p-2 rounded-2xl sm:rounded-full border border-white/20 max-w-xl shadow-2xl" onsubmit="event.preventDefault();"><input class="bg-transparent px-6 py-3.5 text-base sm:text-lg font-medium text-ink placeholder-ink/40 focus:outline-none w-full font-body border-none" placeholder="Enter your email" required="" type="email"><button class="px-8 py-4 rounded-xl sm:rounded-full bg-ink text-cream font-body text-base font-semibold tracking-wide hover:bg-forest transition-colors shrink-0 shadow-lg flex items-center justify-center gap-2" type="submit"><span class="">Let's Start</span><span class="text-xl font-bold inline-flex items-center leading-none transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span></button></form>
+</div>
+</div>
+</div>
+</section>
+<!-- 10. FOOTER (Ink #0E1A13) -->
+<div class="w-full bg-[#F6F1E8] p-[32px] overflow-hidden"><footer class="w-full bg-[#0E1A13] text-[#F6F1E8] rounded-[40px] overflow-hidden relative p-10 lg:p-16 select-none shadow-2xl" style="background-image: radial-gradient(rgba(246, 241, 232, 0.05) 1px, transparent 1px); background-size: 24px 24px;"><div class="absolute -top-16 -right-16 w-[520px] h-[520px] pointer-events-none select-none -rotate-12 z-0" style="opacity: 0.12;"><img alt="" class="w-full h-full object-contain filter hue-rotate-30 brightness-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6K0VdQR8tisQ3-xq-s4YiTS7Y4nMIXqr_Qlj0Flc2ryFuDYd-zr4WCR5Zh0xB1KgTtk-FSldzhQRCSYfqj0kA24yPfBKTWh2BwiGH6O4nQFlKULGLNggeoyCJSOfSMi7Lzo58GxUCw4-JBn3kRSN4BOVX8WVOUwjvvDm9nSHMN-IhuOV_4PvK8gaGJjEkVPpmrCJgyoq3BJAklnrG9xaQUUMAjI1CgU7lQTB02X4FHYv8SWBpLZtJI_Oh9bBpIRKJOoA"></div><div class="relative z-10 max-w-[1440px] mx-auto"><div class="flex flex-col lg:flex-row items-start justify-between gap-8"><div class="max-w-md"><div class="flex items-center gap-3.5 mb-3"><div class="w-10 h-10 rounded-full border border-[#B58B5A] flex items-center justify-center p-2 shrink-0"><img alt="CRON Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6K0VdQR8tisQ3-xq-s4YiTS7Y4nMIXqr_Qlj0Flc2ryFuDYd-zr4WCR5Zh0xB1KgTtk-FSldzhQRCSYfqj0kA24yPfBKTWh2BwiGH6O4nQFlKULGLNggeoyCJSOfSMi7Lzo58GxUCw4-JBn3kRSN4BOVX8WVOUwjvvDm9nSHMN-IhuOV_4PvK8gaGJjEkVPpmrCJgyoq3BJAklnrG9xaQUUMAjI1CgU7lQTB02X4FHYv8SWBpLZtJI_Oh9bBpIRKJOoA"></div><span class="font-mono text-sm font-semibold tracking-[0.2em] text-[#F6F1E8] uppercase">CRON TECHNOLOGIES</span></div><p class="font-body text-sm text-[#F6F1E8]/70 max-w-md leading-relaxed mt-3">Creative technology studio engineering custom software, autonomous AI, and spatial 3D.</p><div class="flex items-center gap-3 mt-5"><a aria-label="X" class="w-10 h-10 rounded-full bg-[#F6F1E8] text-[#0E1A13] flex items-center justify-center font-bold text-xs shadow-md hover:opacity-90 transition" href="#">X</a><a aria-label="GitHub" class="w-10 h-10 rounded-full bg-[#F6F1E8] text-[#0E1A13] flex items-center justify-center font-bold text-xs shadow-md hover:opacity-90 transition" href="#">GH</a><a aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-[#F6F1E8] text-[#0E1A13] flex items-center justify-center font-bold text-xs shadow-md hover:opacity-90 transition" href="#">LI</a><a aria-label="Instagram" class="w-10 h-10 rounded-full bg-[#F6F1E8] text-[#0E1A13] flex items-center justify-center font-bold text-xs shadow-md hover:opacity-90 transition" href="#">IG</a></div></div><div class="pt-2"><a class="bg-[#B58B5A] text-[#0E1A13] font-semibold px-7 py-3.5 rounded-full hover:brightness-105 transition tracking-wide text-sm flex items-center gap-2 shadow-lg" href="#contact"><span class="">Start a project</span><span class="text-base font-bold">↗</span></a></div></div><div class="w-full h-px border-t border-[#F6F1E8]/20 my-10"></div><div class="flex flex-col xl:flex-row items-start xl:items-end justify-between gap-10 xl:gap-8 pb-10"><div class="w-full"><h1 class="font-headline font-black text-[#F6F1E8] whitespace-nowrap text-4xl sm:text-6xl md:text-8xl lg:text-[115px] xl:text-[115px] leading-none tracking-tight select-none">Cron Technologies</h1></div></div><div class="w-full h-px border-t border-[#F6F1E8]/20 my-2"></div><div class="flex flex-col sm:flex-row items-center justify-between text-xs font-body text-[#F6F1E8]/60 pt-6 gap-4"><p class="text-left">A Cron company © 2026. Built with speed and craft.</p><div class="flex items-center gap-6 font-mono text-xs tracking-wider uppercase text-[#F6F1E8]/60"><a class="hover:text-[#F6F1E8] transition-colors" href="#">PRIVACY</a><a class="hover:text-[#F6F1E8] transition-colors" href="#">TERMS</a><div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-[#F6F1E8]/80"><span class="w-2 h-2 rounded-full bg-[#B58B5A]"></span><span class="">ALL SYSTEMS GREEN</span></div></div></div></div></footer></div>
+
+
+
+
+</body></html>
