@@ -7,10 +7,10 @@ export type NavLink = {
 };
 
 export const navLinks: NavLink[] = [
-  { label: "Services", href: "#services" },
-  { label: "Products", href: "#products" },
-  { label: "About", href: "#playbook" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "/#services" },
+  { label: "Products", href: "/#products" },
+  { label: "About", href: "/#playbook" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export type OrbitCard = {
@@ -357,6 +357,7 @@ export const serviceTiers: ServiceTier[] = [
 export type ProductMockup = "finmatrix" | "metromatrix" | "leadmagnet" | "trading";
 
 export type Product = {
+  slug: string;
   name: string;
   tagline: string;
   status: "LIVE" | "BETA";
@@ -365,16 +366,23 @@ export type Product = {
 };
 
 export const products: Product[] = [
-  { name: "FinMatrix", tagline: "Money, clearly tracked.", status: "LIVE", mockup: "finmatrix" },
-  { name: "MetroMatrix", tagline: "Every route, mapped.", status: "LIVE", mockup: "metromatrix" },
+  { slug: "finmatrix", name: "FinMatrix", tagline: "Money, clearly tracked.", status: "LIVE", mockup: "finmatrix" },
   {
+    slug: "metromatrix",
+    name: "MetroMatrix",
+    tagline: "Every route, mapped.",
+    status: "LIVE",
+    mockup: "metromatrix",
+  },
+  {
+    slug: "cronleadmagnet",
     name: "CronLeadMagnet",
     tagline: "Leads, on autopilot.",
     status: "BETA",
     mockup: "leadmagnet",
     fresh: true,
   },
-  { name: "Trading App", tagline: "Trade with clarity.", status: "BETA", mockup: "trading" },
+  { slug: "trading-app", name: "Trading App", tagline: "Trade with clarity.", status: "BETA", mockup: "trading" },
 ];
 
 export type PlaybookStep = {

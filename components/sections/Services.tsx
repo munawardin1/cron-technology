@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { slugify } from "@/lib/slug";
 import {
   categoryLabels,
   pillStyles,
@@ -119,7 +120,7 @@ export default function Services() {
           </p>
           <Link
             className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-bronze hover:underline"
-            href="#contact"
+            href={selected ? `/services/${slugify(selected.title)}` : "#services"}
           >
             Learn more ↗
           </Link>
