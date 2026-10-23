@@ -4,9 +4,9 @@ import { socialLinks } from "@/lib/data";
 
 export default function Footer() {
   return (
-    <div className="w-full bg-cream p-[32px] overflow-hidden">
+    <div className="w-full bg-cream p-3 sm:p-[32px] overflow-hidden">
       <footer
-        className="w-full bg-ink text-cream rounded-[40px] overflow-hidden relative p-10 lg:p-16 select-none shadow-2xl"
+        className="w-full bg-ink text-cream rounded-[40px] overflow-hidden relative p-7 sm:p-10 lg:p-16 select-none shadow-2xl"
         style={{
           backgroundImage: "radial-gradient(rgba(246, 241, 232, 0.05) 1px, transparent 1px)",
           backgroundSize: "24px 24px",
@@ -75,7 +75,7 @@ export default function Footer() {
             <div className="w-full">
               {/* A <p>, not an <h1>: the page keeps a single h1 in the hero.
                   font-bold matches how the design rendered (Fraunces was only loaded up to 700). */}
-              <p className="font-headline font-bold text-cream whitespace-nowrap text-4xl sm:text-6xl md:text-8xl lg:text-[115px] xl:text-[115px] leading-none tracking-tight select-none">
+              <p className="font-headline font-bold text-cream whitespace-nowrap text-[min(115px,calc((100vw-80px)/9.2))] sm:text-[min(115px,calc((100vw-144px)/9.2))] lg:text-[min(115px,calc((100vw-192px)/9.2))] leading-none tracking-tight select-none">
                 Cron Technologies
               </p>
             </div>
@@ -85,15 +85,15 @@ export default function Footer() {
 
           <div className="flex flex-col sm:flex-row items-center justify-between text-xs font-body text-cream/60 pt-6 gap-4">
             <p className="text-left">A Cron company © 2026. Built with speed and craft.</p>
-            <div className="flex items-center gap-6 font-mono text-xs tracking-wider uppercase text-cream/60">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 font-mono text-xs tracking-wider uppercase text-cream/60">
               <a className="hover:text-cream transition-colors" href="#">
                 PRIVACY
               </a>
               <a className="hover:text-cream transition-colors" href="#">
                 TERMS
               </a>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-cream/80">
-                <span className="w-2 h-2 rounded-full bg-bronze"></span>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-cream/80 whitespace-nowrap">
+                <span className="w-2 h-2 shrink-0 rounded-full bg-bronze"></span>
                 <span>ALL SYSTEMS GREEN</span>
               </div>
             </div>

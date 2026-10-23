@@ -82,7 +82,7 @@ export default function Hero() {
       {/* Centerpiece: star emblem with orbiting cards */}
       <div className="relative max-w-[1440px] mx-auto w-full min-h-[520px] lg:min-h-[580px] flex items-center justify-center mt-4">
         {/* Dashed connectors from the side cards to the star */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" fill="none">
+        <svg className="absolute inset-0 w-full h-full pointer-events-none hidden xl:block" fill="none">
           <path
             d="M 180 180 C 260 260, 420 280, 620 300"
             opacity="0.45"
@@ -100,7 +100,7 @@ export default function Hero() {
         </svg>
 
         {/* Left floating card */}
-        <div className="hidden lg:flex absolute left-6 top-12 z-20 hover:rotate-0 hover:scale-105 transition-all duration-300 w-72 bg-white/90 backdrop-blur-md rounded-[28px] p-5 border border-black/5 shadow-xl flex-col gap-2 text-left">
+        <div className="hidden xl:flex absolute left-6 top-12 z-20 hover:rotate-0 hover:scale-105 transition-all duration-300 w-72 bg-white/90 backdrop-blur-md rounded-[28px] p-5 border border-black/5 shadow-xl flex-col gap-2 text-left">
           <div className="flex items-center justify-between">
             <div className="w-9 h-9 rounded-2xl bg-bronze/15 text-bronze flex items-center justify-center">
               <span className="material-symbols-outlined text-lg">graphic_eq</span>
@@ -118,7 +118,7 @@ export default function Hero() {
         </div>
 
         {/* Right floating card */}
-        <div className="hidden lg:flex absolute right-6 top-14 z-20 hover:rotate-0 hover:scale-105 transition-all duration-300 w-72 bg-white/90 backdrop-blur-md rounded-[28px] p-5 border border-black/5 shadow-xl flex-col gap-2 text-left">
+        <div className="hidden xl:flex absolute right-6 top-14 z-20 hover:rotate-0 hover:scale-105 transition-all duration-300 w-72 bg-white/90 backdrop-blur-md rounded-[28px] p-5 border border-black/5 shadow-xl flex-col gap-2 text-left">
           <div className="flex items-center justify-between">
             <div className="flex -space-x-2">
               {sprintTeam.map((member) => (
@@ -144,25 +144,30 @@ export default function Hero() {
 
         {/* Central star emblem */}
         <div className="relative flex flex-col items-center justify-center w-full max-w-[620px]">
-          <div className="absolute w-[440px] h-[440px] sm:w-[540px] sm:h-[540px] rounded-full border border-dashed border-bronze/30 pointer-events-none"></div>
-          <div className="absolute w-[360px] h-[360px] sm:w-[420px] sm:h-[420px] rounded-full border border-black/5 pointer-events-none"></div>
+          {/* Orbit rings stay centred on the star, even when the cards stack below it on phones */}
+          <div className="flex items-center justify-center">
+            <div className="absolute w-[440px] h-[440px] sm:w-[540px] sm:h-[540px] rounded-full border border-dashed border-bronze/30 pointer-events-none"></div>
+            <div className="absolute w-[360px] h-[360px] sm:w-[420px] sm:h-[420px] rounded-full border border-black/5 pointer-events-none"></div>
 
-          <div className="relative z-10 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center p-4">
-            <div className="absolute bottom-4 w-3/4 h-10 rounded-full bg-black/15 blur-2xl pointer-events-none"></div>
-            <Image
-              alt="CRON Star Emblem"
-              className="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(181,139,90,0.4)] animate-pulse-glow transition-transform duration-500"
-              src="/images/cron-star.png"
-              width={384}
-              height={384}
-              priority
-            />
+            <div className="relative z-10 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center p-4">
+              <div className="absolute bottom-4 w-3/4 h-10 rounded-full bg-black/15 blur-2xl pointer-events-none"></div>
+              <Image
+                alt="CRON Star Emblem"
+                className="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(181,139,90,0.4)] animate-pulse-glow transition-transform duration-500"
+                src="/images/cron-star.png"
+                width={384}
+                height={384}
+                priority
+              />
+            </div>
           </div>
 
+          {/* Phones and small tablets: a 2×2 grid under the star. md and up: `contents` removes this wrapper so the cards orbit the star as in the design. */}
+          <div className="grid grid-cols-2 gap-3 w-full mt-2 md:contents">
           {orbitCards.map((card) => (
             <div
               key={card.title}
-              className={`absolute ${card.positionClass} z-20 bg-white/80 backdrop-blur-md border border-bronze/25 rounded-[28px] p-3.5 sm:p-4 shadow-lg flex items-center gap-3.5 hover:scale-105 transition-all`}
+              className={`md:absolute ${card.positionClass} z-20 bg-white/80 backdrop-blur-md border border-bronze/25 rounded-[28px] p-3 sm:p-4 shadow-lg flex items-center gap-2.5 sm:gap-3.5 hover:scale-105 transition-all`}
             >
               <div className={`w-9 h-9 rounded-2xl ${card.iconBoxClass} flex items-center justify-center shrink-0`}>
                 <span className={`material-symbols-outlined text-base ${card.iconClass}`}>{card.icon}</span>
@@ -173,9 +178,10 @@ export default function Hero() {
               </div>
             </div>
           ))}
+          </div>
 
           {/* Deploy snippet */}
-          <div className="absolute -bottom-6 z-20 bg-ink text-cream rounded-2xl px-5 py-2.5 shadow-xl border border-bronze/40 flex items-center gap-3">
+          <div className="mt-6 md:mt-0 md:absolute md:-bottom-6 z-20 bg-ink text-cream rounded-2xl px-5 py-2.5 shadow-xl border border-bronze/40 flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-bronze animate-ping"></span>
             <span className="font-mono text-[11px] font-medium text-mist">
               &gt; cron.deploy(<span className="text-bronze">&apos;production&apos;</span>)

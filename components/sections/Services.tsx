@@ -150,7 +150,7 @@ export default function Services() {
                       ? { opacity: 1, pointerEvents: "auto", filter: "none" }
                       : { opacity: 0.3, filter: "grayscale(60%)" }
                   }
-                  className={`cursor-pointer px-7 py-3.5 rounded-full font-body font-medium ${pill.sizeClass} ${style.pill} shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2.5 ${pill.rotateClass}`}
+                  className={`cursor-pointer px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-full font-body font-medium text-[15px] ${pill.sizeClass} ${style.pill} shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:scale-110 hover:-translate-y-3 hover:z-40 transition-transform duration-200 flex items-center gap-2 sm:gap-2.5 ${pill.rotateClass}`}
                 >
                   <span className={`material-symbols-outlined text-lg ${style.icon}`}>{pill.icon}</span>
                   <span>{pill.title}</span>

@@ -40,14 +40,14 @@ export default function Navbar() {
 
         {/* Right: status chip + CTA */}
         <div className="flex items-center gap-3.5">
-          <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/5">
+          <div className="hidden lg:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/5">
             <span className="w-2 h-2 rounded-full bg-bronze animate-ping"></span>
             <span className="font-mono text-[10px] font-bold tracking-widest text-ink/70 uppercase">
               SYSTEMS ONLINE
             </span>
           </div>
           <Link
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-ink text-cream font-body text-xs font-semibold hover:bg-forest hover:scale-105 transition-all shadow-md"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-ink text-cream font-body text-xs font-semibold whitespace-nowrap hover:bg-forest hover:scale-105 transition-all shadow-md"
             href="#contact"
           >
             <span>Let&apos;s talk</span>

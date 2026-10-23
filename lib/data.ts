@@ -142,7 +142,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "AI Agents",
         icon: "neurology",
         category: "ai",
-        sizeClass: "text-[19px]",
+        sizeClass: "sm:text-[19px]",
         rotateClass: "-rotate-[5deg]",
         description:
           "Autonomous LLM swarms and workflow agents built to resolve complex operations around the clock.",
@@ -151,7 +151,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Strategy",
         icon: "explore",
         category: "consulting",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "-rotate-[16deg]",
         description:
           "Comprehensive strategic advisory to align product architecture with venture-backed expansion.",
@@ -160,7 +160,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "3D Visualization",
         icon: "view_in_ar",
         category: "3d",
-        sizeClass: "text-[19px]",
+        sizeClass: "sm:text-[19px]",
         rotateClass: "rotate-[12deg]",
         description:
           "Spatial interactive canvases, WebGL visualizers, and digital twin environments.",
@@ -169,7 +169,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Web Apps",
         icon: "code",
         category: "software",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "-rotate-[8deg]",
         description:
           "High-performance custom web applications with lightning fast interfaces and zero bloat.",
@@ -183,7 +183,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Tech Audits",
         icon: "track_changes",
         category: "consulting",
-        sizeClass: "text-[19px]",
+        sizeClass: "sm:text-[19px]",
         rotateClass: "rotate-[11deg]",
         description:
           "Deep architectural audits to uncover bottlenecks, reduce technical debt, and cut cloud burn.",
@@ -192,7 +192,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Chatbots",
         icon: "smart_toy",
         category: "ai",
-        sizeClass: "text-[21px]",
+        sizeClass: "sm:text-[21px]",
         rotateClass: "rotate-[16deg]",
         description:
           "Domain-grounded generative chat engines trained on your proprietary enterprise documentation.",
@@ -201,7 +201,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Product Models",
         icon: "deployed_code",
         category: "3d",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "-rotate-[15deg]",
         description:
           "Pixel-perfect digital models optimized for cross-platform real-time 3D configuration.",
@@ -210,7 +210,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Mobile Apps",
         icon: "smartphone",
         category: "software",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "rotate-[14deg]",
         description:
           "Native iOS and Android systems engineered with fluid gestures and instant load states.",
@@ -219,7 +219,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Roadmaps",
         icon: "signpost",
         category: "consulting",
-        sizeClass: "text-[19px]",
+        sizeClass: "sm:text-[19px]",
         rotateClass: "-rotate-[7deg]",
         description:
           "Precise multi-quarter engineering milestones prioritizing highest ROI releases.",
@@ -228,7 +228,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Automations",
         icon: "bolt",
         category: "ai",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "-rotate-[14deg]",
         description:
           "End-to-end event-triggered pipeline automations saving hundreds of manual team hours.",
@@ -242,7 +242,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Dashboards",
         icon: "data_thresholding",
         category: "software",
-        sizeClass: "text-[19px]",
+        sizeClass: "sm:text-[19px]",
         rotateClass: "-rotate-[18deg]",
         description:
           "Dense real-time command dashboards with sub-second websocket streaming updates.",
@@ -251,7 +251,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Renders",
         icon: "photo_camera",
         category: "3d",
-        sizeClass: "text-[21px]",
+        sizeClass: "sm:text-[21px]",
         rotateClass: "rotate-[7deg]",
         description:
           "Photorealistic product renders and cinematic motion ready for campaign launches.",
@@ -260,7 +260,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "CRM Workflows",
         icon: "hub",
         category: "ai",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "rotate-[9deg]",
         description:
           "Autonomous lead classification, context-aware drafting, and intelligent deal routing.",
@@ -269,7 +269,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "APIs",
         icon: "api",
         category: "software",
-        sizeClass: "text-[19px]",
+        sizeClass: "sm:text-[19px]",
         rotateClass: "rotate-[6deg]",
         description:
           "Ultra low-latency resilient GraphQL and REST APIs handling heavy throughput.",
@@ -278,7 +278,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Process Design",
         icon: "schema",
         category: "consulting",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "rotate-[18deg]",
         description:
           "Re-engineering operational org charts into rapid deployment software loops.",
@@ -287,7 +287,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Animations",
         icon: "motion_photos_on",
         category: "3d",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "-rotate-[10deg]",
         description: "Dynamic physics-based motion graphics and micro-interactions.",
       },
@@ -300,7 +300,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "SaaS Platforms",
         icon: "cloud",
         category: "software",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "-rotate-[12deg]",
         description:
           "Turnkey multi-tenant SaaS architectures complete with billing, auth, and analytics.",
@@ -309,7 +309,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Lead Bots",
         icon: "support_agent",
         category: "ai",
-        sizeClass: "text-[19px]",
+        sizeClass: "sm:text-[19px]",
         rotateClass: "-rotate-[21deg]",
         description:
           "Inbound conversion bots that qualify high-intent prospects and book calendars.",
@@ -318,7 +318,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "AR Previews",
         icon: "view_in_ar_new",
         category: "3d",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "rotate-[22deg]",
         description:
           "Instant web-based augmented reality product staging for luxury retail & commerce.",
@@ -327,7 +327,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Team Training",
         icon: "groups",
         category: "consulting",
-        sizeClass: "text-[19px]",
+        sizeClass: "sm:text-[19px]",
         rotateClass: "-rotate-[23deg]",
         description:
           "Hands-on enablement upskilling in-house developers on modern AI and reactive tooling.",
@@ -336,7 +336,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Websites",
         icon: "language",
         category: "software",
-        sizeClass: "text-[21px]",
+        sizeClass: "sm:text-[21px]",
         rotateClass: "rotate-[20deg]",
         description:
           "Award-winning digital flagship storefronts crafted for category-defining brands.",
@@ -345,7 +345,7 @@ export const serviceTiers: ServiceTier[] = [
         title: "Advisory",
         icon: "verified",
         category: "consulting",
-        sizeClass: "text-[20px]",
+        sizeClass: "sm:text-[20px]",
         rotateClass: "rotate-[5deg]",
         description:
           "Fractional CTO leadership on architecture, equity planning, and enterprise governance.",
