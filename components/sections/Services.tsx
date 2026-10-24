@@ -57,7 +57,7 @@ export default function Services() {
             <span className="font-mono text-xs font-semibold text-bronze tracking-widest uppercase block mb-4">
               01 / SERVICES
             </span>
-            <h2 className="font-headline font-semibold text-6xl md:text-8xl lg:text-[115px] leading-[0.92] md:leading-none tracking-tight text-cream">
+            <h2 className="font-headline font-semibold text-5xl min-[400px]:text-6xl md:text-8xl lg:text-[115px] leading-[0.92] md:leading-none tracking-tight text-cream">
               Everything your
               <br />
               business <em className="font-normal italic text-bronze">needs.</em>

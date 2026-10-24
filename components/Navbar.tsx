@@ -7,7 +7,7 @@ import NavLinks from "@/components/NavLinks";
 export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white/75 backdrop-blur-xl border-b border-black/5 transition-all">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto px-4 min-[400px]:px-6 lg:px-12 h-20 flex items-center justify-between gap-2">
         {/* Left: star logo + wordmark */}
         <Link className="flex items-center gap-2.5 group" href="/">
           <div className="w-9 h-9 rounded-full bg-bronze/10 border border-bronze/30 flex items-center justify-center p-1.5 group-hover:scale-105 transition-all">
@@ -40,7 +40,7 @@ export default function Navbar() {
             </span>
           </div>
           <SectionLink
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-ink text-cream font-body text-xs font-semibold whitespace-nowrap hover:bg-forest hover:scale-105 transition-all shadow-md"
+            className="inline-flex items-center gap-2 px-4 min-[400px]:px-6 py-2.5 rounded-full bg-ink text-cream font-body text-xs font-semibold whitespace-nowrap hover:bg-forest hover:scale-105 transition-all shadow-md"
             href="#contact"
           >
             <span>Let&apos;s talk</span>
