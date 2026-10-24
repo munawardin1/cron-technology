@@ -24,10 +24,11 @@ export default function Navbar() {
         </Link>
 
         {/* Center: frosted pill with section links */}
-        <nav className="hidden md:flex items-center gap-1.5 bg-white/80 backdrop-blur-md border border-black/5 shadow-xs rounded-full px-2 py-1.5">
+        <nav className="relative hidden md:flex items-center gap-1.5 bg-white/80 backdrop-blur-md border border-black/5 shadow-xs rounded-full px-2 py-1.5">
           <NavLinks
-            activeClass="px-5 py-2 rounded-full font-body text-xs font-semibold text-ink bg-cream shadow-xs transition-all"
-            idleClass="px-5 py-2 rounded-full font-body text-xs font-medium text-ink/70 hover:text-ink hover:bg-black/5 transition-all"
+            indicatorClass="rounded-full bg-cream shadow-xs"
+            activeClass="relative px-5 py-2 rounded-full font-body text-xs font-semibold text-ink transition-colors"
+            idleClass="relative px-5 py-2 rounded-full font-body text-xs font-medium text-ink/70 hover:text-ink hover:bg-black/5 transition-colors"
           />
         </nav>
 
