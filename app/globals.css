@@ -140,6 +140,17 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* Visitors who ask their system for less motion: stop the decorative loops
+   (marquee, pulsing star, spinning badge, blinking status dots). Nothing changes for everyone else. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-spin-slow,
+  .animate-pulse-glow,
+  .animate-ping {
+    animation: none;
+  }
+}
+
 ::selection {
   background-color: var(--color-bronze);
   color: var(--color-ink);
