@@ -16,7 +16,7 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-[32px] bg-ink border border-forest/50 shadow-2xl mb-12 min-h-[700px] lg:min-h-[740px] flex flex-col justify-center items-center p-6 sm:p-12 lg:p-16 select-none">
+        <div className="relative overflow-hidden rounded-[32px] bg-ink border border-forest/50 shadow-2xl mb-12 min-h-[700px] lg:min-h-[740px] flex flex-col justify-center items-center px-6 md:px-12 pt-20 pb-28 xl:p-16 select-none">
           <div className="absolute top-8 left-8 sm:left-10 z-20 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-bronze"></span>
           </div>
@@ -47,13 +47,13 @@ export default function Testimonials() {
             <div className="absolute bottom-20 right-28 sm:right-36 text-ink text-7xl sm:text-8xl font-headline font-bold rotate-12 select-none opacity-90">
               ”
             </div>
-            <div className="absolute top-14 right-20 sm:right-32 -rotate-[24deg] bg-cream text-ink px-4 py-1.5 rounded-md shadow-xl border border-ink/20 flex items-center">
+            <div className="absolute top-7 right-6 -rotate-[8deg] xl:top-14 xl:right-32 xl:-rotate-[24deg] bg-cream text-ink px-4 py-1.5 rounded-md shadow-xl border border-ink/20 flex items-center">
               <span className="font-mono font-bold text-xs uppercase tracking-[0.2em]">#REVIEW</span>
             </div>
-            <div className="absolute bottom-24 left-6 sm:left-12 rotate-[68deg] bg-cream text-ink px-4 py-1.5 rounded-md shadow-xl border border-ink/20 flex items-center origin-left">
+            <div className="absolute bottom-9 left-6 -rotate-[6deg] xl:bottom-24 xl:left-12 xl:rotate-[68deg] bg-cream text-ink px-4 py-1.5 rounded-md shadow-xl border border-ink/20 flex items-center xl:origin-left">
               <span className="font-mono font-bold text-xs uppercase tracking-[0.2em]">#TESTIMONIAL</span>
             </div>
-            <div className="absolute top-1/2 right-6 sm:right-12 rotate-[12deg] bg-cream text-ink px-4 py-1.5 rounded-md shadow-xl border border-ink/20 flex items-center">
+            <div className="absolute bottom-9 right-6 rotate-[6deg] xl:bottom-auto xl:top-1/2 xl:right-12 xl:rotate-[12deg] bg-cream text-ink px-4 py-1.5 rounded-md shadow-xl border border-ink/20 flex items-center">
               <span className="font-mono font-bold text-xs uppercase tracking-[0.2em]">#SHIPPED</span>
             </div>
             <div className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-forest/30 blur-[130px]"></div>
