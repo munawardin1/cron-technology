@@ -81,7 +81,7 @@ export default function Hero() {
       </div>
 
       {/* Centerpiece: star emblem with orbiting cards */}
-      <div className="relative max-w-[1440px] mx-auto w-full min-h-[520px] lg:min-h-[580px] flex items-center justify-center mt-4">
+      <div className="relative max-w-[1440px] mx-auto w-full min-h-[420px] md:min-h-[520px] lg:min-h-[580px] flex items-center justify-center mt-4">
         {/* Dashed connectors from the side cards to the star */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none hidden xl:block" fill="none">
           <path
@@ -145,30 +145,35 @@ export default function Hero() {
 
         {/* Central star emblem */}
         <div className="relative flex flex-col items-center justify-center w-full max-w-[620px]">
-          {/* Orbit rings stay centred on the star, even when the cards stack below it on phones */}
-          <div className="flex items-center justify-center">
-            <div className="absolute w-[440px] h-[440px] sm:w-[540px] sm:h-[540px] rounded-full border border-dashed border-bronze/30 pointer-events-none"></div>
-            <div className="absolute w-[360px] h-[360px] sm:w-[420px] sm:h-[420px] rounded-full border border-black/5 pointer-events-none"></div>
+          {/* Phones and small tablets (below md): the cards zig-zag down the screen, right then left,
+              floating over the star, which sits centred behind them.
+              md and up: both wrappers use `contents`, so the star is back in the flow and the cards
+              orbit it with their absolute positions, exactly as in the design. */}
+          <div className="relative w-full md:contents">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:static">
+              <div className="absolute w-[440px] h-[440px] sm:w-[540px] sm:h-[540px] rounded-full border border-dashed border-bronze/30 pointer-events-none"></div>
+              <div className="absolute w-[360px] h-[360px] sm:w-[420px] sm:h-[420px] rounded-full border border-black/5 pointer-events-none"></div>
 
-            <div className="relative z-10 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center p-4">
-              <div className="absolute bottom-4 w-3/4 h-10 rounded-full bg-black/15 blur-2xl pointer-events-none"></div>
-              <Image
-                alt="CRON Star Emblem"
-                className="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(181,139,90,0.4)] animate-pulse-glow transition-transform duration-500"
-                src="/images/cron-star.png"
-                width={384}
-                height={384}
-                preload
-              />
+              <div className="relative z-10 w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center p-4">
+                <div className="absolute bottom-4 w-3/4 h-10 rounded-full bg-black/15 blur-2xl pointer-events-none"></div>
+                <Image
+                  alt="CRON Star Emblem"
+                  className="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(181,139,90,0.4)] animate-pulse-glow transition-transform duration-500"
+                  src="/images/cron-star.png"
+                  width={384}
+                  height={384}
+                  preload
+                />
+              </div>
             </div>
-          </div>
 
-          {/* Phones and small tablets: a 2×2 grid under the star. md and up: `contents` removes this wrapper so the cards orbit the star as in the design. */}
-          <div className="grid grid-cols-2 gap-3 w-full mt-2 md:contents">
-          {orbitCards.map((card) => (
+            <div className="relative flex flex-col gap-6 w-full py-10 md:contents">
+          {orbitCards.map((card, index) => (
             <div
               key={card.title}
-              className={`md:absolute ${card.positionClass} z-20 bg-white/80 backdrop-blur-md border border-bronze/25 rounded-[28px] p-3 sm:p-4 shadow-lg flex items-center gap-2.5 sm:gap-3.5 hover:scale-105 transition-all`}
+              className={`w-[68%] max-w-80 md:max-w-none ${
+                index % 2 === 0 ? "self-end rotate-2" : "self-start -rotate-2"
+              } md:w-auto md:self-auto md:rotate-0 md:absolute ${card.positionClass} z-20 bg-white/80 backdrop-blur-md border border-bronze/25 rounded-[28px] p-3 sm:p-4 shadow-lg flex items-center gap-2.5 sm:gap-3.5 hover:scale-105 transition-all`}
             >
               <div className={`w-9 h-9 rounded-2xl ${card.iconBoxClass} flex items-center justify-center shrink-0`}>
                 <span className={`material-symbols-outlined text-base ${card.iconClass}`}>{card.icon}</span>
@@ -179,6 +184,7 @@ export default function Hero() {
               </div>
             </div>
           ))}
+            </div>
           </div>
 
           {/* Deploy snippet */}
