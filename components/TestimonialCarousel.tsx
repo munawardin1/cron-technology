@@ -16,9 +16,12 @@ export default function TestimonialCarousel({ items }: { items: Testimonial[] })
   const { active, leaving, direction } = deal;
   const swipeStart = useRef<number | null>(null);
 
-  function go(index: number, dir: 1 | -1) {
-    const target = (index + items.length) % items.length;
-    if (target === active) return;
+  // No looping: previous stops at the first review, next stops at the last.
+  const isFirst = active === 0;
+  const isLast = active === items.length - 1;
+
+  function go(target: number, dir: 1 | -1) {
+    if (target < 0 || target >= items.length || target === active) return;
     setDeal((current) => ({ active: target, leaving: current.active, direction: dir, count: current.count + 1 }));
   }
 
@@ -124,7 +127,8 @@ export default function TestimonialCarousel({ items }: { items: Testimonial[] })
         <button
           aria-label="Previous review"
           onClick={previous}
-          className="w-10 h-10 rounded-full border border-bronze/60 bg-ink/70 text-cream flex items-center justify-center font-mono hover:bg-bronze hover:text-ink transition-colors shadow-lg"
+          disabled={isFirst}
+          className="w-10 h-10 rounded-full border border-bronze/60 bg-ink/70 text-cream flex items-center justify-center font-mono hover:bg-bronze hover:text-ink transition-colors shadow-lg disabled:opacity-35 disabled:cursor-not-allowed disabled:hover:bg-ink/70 disabled:hover:text-cream"
           type="button"
         >
           &lt;
@@ -148,7 +152,8 @@ export default function TestimonialCarousel({ items }: { items: Testimonial[] })
         <button
           aria-label="Next review"
           onClick={next}
-          className="w-10 h-10 rounded-full border border-bronze/60 bg-ink/70 text-cream flex items-center justify-center font-mono hover:bg-bronze hover:text-ink transition-colors shadow-lg"
+          disabled={isLast}
+          className="w-10 h-10 rounded-full border border-bronze/60 bg-ink/70 text-cream flex items-center justify-center font-mono hover:bg-bronze hover:text-ink transition-colors shadow-lg disabled:opacity-35 disabled:cursor-not-allowed disabled:hover:bg-ink/70 disabled:hover:text-cream"
           type="button"
         >
           &gt;
