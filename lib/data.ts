@@ -442,6 +442,8 @@ export type Testimonial = {
   project: string;
 };
 
+// PLACEHOLDER REVIEWS: the first one comes from the Stitch design, the other two were written
+// to fill the carousel. Replace all of them with real client quotes (with permission) before launch.
 export const testimonials: Testimonial[] = [
   {
     initials: "AV",
@@ -450,6 +452,22 @@ export const testimonials: Testimonial[] = [
     quote:
       "“CRON shipped our entire multi-agent workflow in weeks. Straightforward, fast and effortless to work with. They made what is usually an excruciating engineering process feel simple.”",
     project: "FinMatrix Integration · Q1 2026",
+  },
+  {
+    initials: "MK",
+    name: "Maya Khalil",
+    role: "HEAD OF OPS · LUMEN FREIGHT",
+    quote:
+      "“We went from spreadsheets to live routing for the whole fleet in one quarter. CRON asked the right questions, shipped every sprint and never once made us chase them for an update.”",
+    project: "MetroMatrix Rollout · Q2 2026",
+  },
+  {
+    initials: "JO",
+    name: "James Okafor",
+    role: "FOUNDER · NORTHWIND STUDIO",
+    quote:
+      "“Our customers can now place products in their own rooms before buying. CRON handled the 3D models, the AR viewer and the store integration, and returns dropped in the first month.”",
+    project: "AR Previews Launch · Q3 2026",
   },
 ];
 

@@ -1,8 +1,7 @@
+import TestimonialCarousel from "@/components/TestimonialCarousel";
 import { testimonials } from "@/lib/data";
 
 export default function Testimonials() {
-  const testimonial = testimonials[0];
-
   return (
     <section className="w-full bg-cream text-ink py-28 px-6 lg:px-12 relative overflow-hidden" id="work">
       <div className="max-w-[1440px] mx-auto">
@@ -61,66 +60,7 @@ export default function Testimonials() {
             <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-bronze/20 blur-[120px]"></div>
           </div>
 
-          {/* Stacked review cards */}
-          <div className="relative z-10 w-full max-w-[740px] my-auto pt-6">
-            {/* Back card: the design's rotate-4 class doesn't exist in Tailwind v3, so it is not rotated */}
-            <div className="absolute inset-0 bg-cream/50 rounded-[32px] border border-bronze/30 shadow-xl scale-90 translate-y-6 translate-x-4 pointer-events-none"></div>
-            <div className="absolute inset-0 bg-cream/75 rounded-[32px] border border-bronze/30 shadow-xl -rotate-6 scale-95 -translate-y-3 -translate-x-3 pointer-events-none"></div>
-
-            <div className="relative bg-cream text-ink p-8 md:p-10 rounded-[32px] shadow-2xl border border-bronze/40 rotate-2 hover:rotate-0 transition-transform duration-300">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full border-2 border-bronze overflow-hidden bg-forest/20 flex items-center justify-center font-headline font-bold text-lg text-ink shadow-xs shrink-0">
-                    {testimonial.initials}
-                  </div>
-                  <div>
-                    <div className="font-body font-semibold text-xl text-ink leading-snug">{testimonial.name}</div>
-                    <div className="font-mono text-xs uppercase tracking-wider text-ink/70 font-medium">
-                      {testimonial.role}
-                    </div>
-                    <div className="flex items-center gap-1 text-bronze text-sm mt-1 select-none" aria-label="5 out of 5 stars">
-                      <span>★</span>
-                      <span>★</span>
-                      <span>★</span>
-                      <span>★</span>
-                      <span>★</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-ink/5 border border-ink/10 font-mono text-[11px] font-bold tracking-wider text-ink uppercase">
-                  <span className="w-2 h-2 rounded-full bg-bronze"></span>
-                  VERIFIED CLIENT
-                </div>
-              </div>
-              <p className="font-body text-lg md:text-xl text-ink font-normal leading-relaxed md:leading-7 mb-6">{testimonial.quote}</p>
-              <div className="pt-4 border-t border-ink/10 flex items-center justify-between">
-                <span className="font-mono text-xs text-ink/60 uppercase tracking-wider">{testimonial.project}</span>
-              </div>
-            </div>
-
-            {/* Carousel controls */}
-            <div className="mt-8 flex items-center justify-center gap-6">
-              <button
-                aria-label="Previous review"
-                className="w-10 h-10 rounded-full border border-bronze/60 bg-ink/70 text-cream flex items-center justify-center font-mono hover:bg-bronze hover:text-ink transition-colors shadow-lg"
-                type="button"
-              >
-                &lt;
-              </button>
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-bronze"></span>
-                <span className="w-2 h-2 rounded-full bg-cream/40 hover:bg-cream/80 transition-colors cursor-pointer"></span>
-                <span className="w-2 h-2 rounded-full bg-cream/40 hover:bg-cream/80 transition-colors cursor-pointer"></span>
-              </div>
-              <button
-                aria-label="Next review"
-                className="w-10 h-10 rounded-full border border-bronze/60 bg-ink/70 text-cream flex items-center justify-center font-mono hover:bg-bronze hover:text-ink transition-colors shadow-lg"
-                type="button"
-              >
-                &gt;
-              </button>
-            </div>
-          </div>
+          <TestimonialCarousel items={testimonials} />
         </div>
       </div>
     </section>
