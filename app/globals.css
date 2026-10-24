@@ -20,13 +20,12 @@
   --animate-pulse-glow: pulseGlow 4s ease-in-out infinite;
   /* Review carousel: dealing through the stacked deck of review cards.
      "Back" matches the tilted card behind the stack (-rotate-6, scale-95, nudged up-left). */
-  --animate-deck-to-side: deckToSide 0.55s cubic-bezier(0.55, 0, 0.75, 0.2) both;
+  --animate-deck-toss-left: deckTossLeft 0.55s cubic-bezier(0.55, 0, 0.75, 0.2) both;
+  --animate-deck-toss-right: deckTossRight 0.55s cubic-bezier(0.55, 0, 0.75, 0.2) both;
   --animate-deck-from-back: deckFromBack 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) 0.08s both;
-  --animate-deck-from-side: deckFromSide 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  --animate-deck-to-back: deckToBack 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
   --animate-deck-nudge: deckNudge 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 
-  @keyframes deckToSide {
+  @keyframes deckTossLeft {
     from {
       opacity: 1;
       transform: none;
@@ -34,6 +33,16 @@
     to {
       opacity: 0;
       transform: translate(-70%, 40px) rotate(-14deg);
+    }
+  }
+  @keyframes deckTossRight {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 0;
+      transform: translate(70%, 40px) rotate(14deg);
     }
   }
   @keyframes deckFromBack {
@@ -44,26 +53,6 @@
     to {
       opacity: 1;
       transform: none;
-    }
-  }
-  @keyframes deckFromSide {
-    from {
-      opacity: 0;
-      transform: translate(-70%, 40px) rotate(-14deg);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-  @keyframes deckToBack {
-    from {
-      opacity: 1;
-      transform: none;
-    }
-    to {
-      opacity: 0;
-      transform: translate(-12px, -12px) scale(0.95) rotate(-8deg);
     }
   }
   @keyframes deckNudge {

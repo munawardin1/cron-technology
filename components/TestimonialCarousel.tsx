@@ -8,7 +8,7 @@ import type { Testimonial } from "@/lib/data";
 // so the stack keeps the height of the longest review and never jumps.
 //
 // Switching deals through the deck: on "next" the front card is tossed off to the left
-// while the next one rises from the back of the stack; "previous" plays it in reverse.
+// while the next one rises from the back of the stack; "previous" does the same, tossing to the right.
 type Deal = { active: number; leaving: number | null; direction: 1 | -1; count: number };
 
 export default function TestimonialCarousel({ items }: { items: Testimonial[] }) {
@@ -25,10 +25,11 @@ export default function TestimonialCarousel({ items }: { items: Testimonial[] })
   function cardClass(index: number) {
     if (index === active) {
       if (leaving === null) return "z-10"; // first render: no animation
-      return direction === 1 ? "z-10 animate-deck-from-back" : "z-20 animate-deck-from-side";
+      return "z-10 animate-deck-from-back";
     }
     if (index === leaving) {
-      return `pointer-events-none ${direction === 1 ? "z-20 animate-deck-to-side" : "z-10 animate-deck-to-back"}`;
+      // Next tosses the front card left, previous tosses it right (matching the swipe).
+      return `z-20 pointer-events-none ${direction === 1 ? "animate-deck-toss-left" : "animate-deck-toss-right"}`;
     }
     return "invisible opacity-0 pointer-events-none";
   }
