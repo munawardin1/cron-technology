@@ -115,7 +115,7 @@ export default function Services() {
               ✕
             </button>
           </div>
-          <h4 className="font-headline font-semibold text-xl text-cream mb-1.5">{selected?.title ?? "Title"}</h4>
+          <h3 className="font-headline font-semibold text-xl text-cream mb-1.5">{selected?.title ?? "Title"}</h3>
           <p className="font-body text-xs text-cream/75 mb-3 leading-relaxed">
             {selected?.description ?? "Description"}
           </p>

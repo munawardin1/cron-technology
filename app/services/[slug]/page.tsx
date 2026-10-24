@@ -69,6 +69,7 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
             src="/images/cron-star.png"
             width={820}
             height={820}
+            loading="eager"
           />
         </div>
 

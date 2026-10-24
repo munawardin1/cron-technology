@@ -141,12 +141,17 @@ export default function TestimonialCarousel({ items }: { items: Testimonial[] })
               aria-label={`Show review ${index + 1}`}
               aria-current={index === active}
               onClick={() => go(index, index > active ? 1 : -1)}
-              className={
-                index === active
-                  ? "w-2.5 h-2.5 rounded-full bg-bronze transition-colors"
-                  : "w-2 h-2 rounded-full bg-cream/40 hover:bg-cream/80 transition-colors cursor-pointer"
-              }
-            ></button>
+              // Invisible padding gives each dot a 24px tap area; the negative margin keeps the dots' spacing.
+              className="group/dot p-2 -m-2 rounded-full cursor-pointer"
+            >
+              <span
+                className={
+                  index === active
+                    ? "block w-2.5 h-2.5 rounded-full bg-bronze transition-colors"
+                    : "block w-2 h-2 rounded-full bg-cream/40 group-hover/dot:bg-cream/80 transition-colors"
+                }
+              ></span>
+            </button>
           ))}
         </div>
         <button

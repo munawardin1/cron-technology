@@ -108,9 +108,9 @@ export default function Hero() {
             </div>
             <span className="font-mono text-[10px] font-bold text-ink/50 tracking-wider uppercase">SPRINT 01</span>
           </div>
-          <h4 className="font-headline font-semibold text-lg text-ink leading-snug mt-1">
+          <p className="font-headline font-semibold text-lg text-ink leading-snug mt-1">
             Ideas into <span className="italic font-normal text-bronze">product.</span>
-          </h4>
+          </p>
           <p className="font-body text-xs text-ink/60">Brief it. We build it.</p>
           <div className="mt-2 pt-2 border-t border-black/5 flex items-center justify-between text-[10px] font-mono text-ink/50">
             <span>EST. TIME</span>
@@ -135,7 +135,7 @@ export default function Hero() {
               ACTIVE
             </span>
           </div>
-          <h4 className="font-headline font-semibold text-lg text-ink leading-snug mt-1">Shipped, not slideware.</h4>
+          <p className="font-headline font-semibold text-lg text-ink leading-snug mt-1">Shipped, not slideware.</p>
           <p className="font-body text-xs text-ink/60">Live in weeks.</p>
           <div className="mt-2 pt-2 border-t border-black/5 flex items-center justify-between text-[10px] font-mono text-ink/50">
             <span>DEPLOYMENT</span>
