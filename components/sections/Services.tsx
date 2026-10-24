@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import SectionLink from "@/components/SectionLink";
 import { slugify } from "@/lib/slug";
 import {
   categoryLabels,
@@ -66,13 +67,13 @@ export default function Services() {
             <p className="font-body text-cream/70 text-lg max-w-sm leading-relaxed">
               Software, AI, 3D and strategy. One team, one place.
             </p>
-            <Link
+            <SectionLink
               className="bg-bronze text-ink font-medium px-7 py-3 rounded-full hover:brightness-110 transition shadow-lg inline-flex items-center gap-2 mt-4 font-body text-sm"
               href="#contact"
             >
               <span>Book a call</span>
               <span className="font-bold">↗</span>
-            </Link>
+            </SectionLink>
           </div>
         </div>
 

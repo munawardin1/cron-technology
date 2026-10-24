@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import SectionLink from "@/components/SectionLink";
 import { orbitCards, sprintTeam, trustedBy } from "@/lib/data";
 
 export default function Hero() {
@@ -22,6 +22,7 @@ export default function Hero() {
         src="/images/cron-star.png"
         width={740}
         height={740}
+        loading="eager"
       />
 
       {/* Rotating circular text badge */}
@@ -62,20 +63,20 @@ export default function Hero() {
           Software, AI agents and 3D, built to ship fast.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
-          <Link
+          <SectionLink
             className="px-8 py-4 rounded-full bg-ink text-cream font-body text-sm font-semibold tracking-wide hover:bg-forest hover:scale-105 transition-all shadow-xl shadow-black/10 flex items-center gap-2.5 group"
             href="#contact"
           >
             <span>Start a project</span>
             <span className="text-base font-bold transition-transform group-hover:translate-x-1">→</span>
-          </Link>
-          <Link
+          </SectionLink>
+          <SectionLink
             className="px-8 py-4 rounded-full bg-white border border-black/10 text-ink font-body text-sm font-semibold tracking-wide hover:bg-black/5 hover:border-black/20 transition-all shadow-xs flex items-center gap-2"
             href="#work"
           >
             <span className="material-symbols-outlined text-lg text-bronze">play_circle</span>
             <span>Watch showreel</span>
-          </Link>
+          </SectionLink>
         </div>
       </div>
 
@@ -157,7 +158,7 @@ export default function Hero() {
                 src="/images/cron-star.png"
                 width={384}
                 height={384}
-                priority
+                preload
               />
             </div>
           </div>

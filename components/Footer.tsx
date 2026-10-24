@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import SectionLink from "@/components/SectionLink";
 import { socialLinks } from "@/lib/data";
 
 export default function Footer() {
@@ -59,13 +59,13 @@ export default function Footer() {
               </div>
             </div>
             <div className="pt-2">
-              <Link
+              <SectionLink
                 className="bg-bronze text-ink font-semibold px-7 py-3.5 rounded-full hover:brightness-105 transition tracking-wide text-sm flex items-center gap-2 shadow-lg"
                 href="#contact"
               >
                 <span>Start a project</span>
                 <span className="text-base font-bold">↗</span>
-              </Link>
+              </SectionLink>
             </div>
           </div>
 

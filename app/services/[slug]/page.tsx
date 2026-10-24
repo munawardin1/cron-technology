@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import SectionLink from "@/components/SectionLink";
 import { notFound } from "next/navigation";
 import AccentText from "@/components/AccentText";
 import SectionHeader from "@/components/SectionHeader";
@@ -18,6 +18,9 @@ import {
   services,
   servicesInCategory,
 } from "@/lib/services";
+
+// Every real slug is prebuilt as static HTML; unknown slugs may wait on the server (then 404).
+export const instant = false;
 
 // Build one static page per service at build time.
 export function generateStaticParams() {
@@ -71,12 +74,12 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
 
         <div className="relative z-10 max-w-[1440px] mx-auto w-full">
           <div className="flex flex-wrap items-center gap-2.5 mb-10">
-            <Link
+            <SectionLink
               href="/#services"
               className="font-mono text-xs tracking-wider uppercase px-4 py-2 rounded-full border border-white/10 bg-white/[0.04] text-cream/70 hover:text-cream hover:border-white/20 transition-all flex items-center gap-2"
             >
               ← ALL SERVICES
-            </Link>
+            </SectionLink>
             <span className="font-mono text-xs tracking-wider uppercase px-4 py-2 rounded-full border border-bronze bg-bronze/25 text-cream flex items-center gap-2">
               {category}
             </span>
@@ -91,13 +94,13 @@ export default async function ServicePage({ params }: PageProps<"/services/[slug
                 <AccentText text={service.title} />
               </h1>
               <p className="font-body text-cream/70 text-lg max-w-xl leading-relaxed mb-8">{detail.intro}</p>
-              <Link
+              <SectionLink
                 className="bg-bronze text-ink font-medium px-7 py-3 rounded-full hover:brightness-110 transition shadow-lg inline-flex items-center gap-2 font-body text-sm"
                 href="#contact"
               >
                 <span>Book a call</span>
                 <span className="font-bold">↗</span>
-              </Link>
+              </SectionLink>
             </div>
 
             {/* The service's own sticker from the pile */}

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import SectionLink from "@/components/SectionLink";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/lib/data";
 
@@ -30,13 +30,13 @@ export default function Products() {
             <p className="font-body text-base text-ink/70 leading-relaxed mb-8 max-w-sm">
               Built in-house. Shipped, tested, live.
             </p>
-            <Link
+            <SectionLink
               className="group inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-ink border-b-2 border-ink pb-1 hover:text-bronze hover:border-bronze transition-colors"
               href="#contact"
             >
               <span>SEE ALL PRODUCTS</span>
               <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
+            </SectionLink>
           </div>
 
           {/* Product cards */}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import SectionLink from "@/components/SectionLink";
 import { notFound } from "next/navigation";
 import AccentText from "@/components/AccentText";
 import ProductCard from "@/components/ProductCard";
@@ -10,6 +10,9 @@ import StepCards from "@/components/StepCards";
 import ContactCta from "@/components/sections/ContactCta";
 import { products } from "@/lib/data";
 import { getProduct, productDetails } from "@/lib/products";
+
+// Every real slug is prebuilt as static HTML; unknown slugs may wait on the server (then 404).
+export const instant = false;
 
 // Build one static page per product at build time.
 export function generateStaticParams() {
@@ -70,20 +73,20 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
               </p>
               <p className="font-body text-base text-ink/70 leading-relaxed mb-8 max-w-md">{detail.intro}</p>
               <div className="flex flex-wrap items-center gap-6">
-                <Link
+                <SectionLink
                   className="px-8 py-4 rounded-full bg-ink text-cream font-body text-sm font-semibold tracking-wide hover:bg-forest hover:scale-105 transition-all shadow-xl shadow-black/10 flex items-center gap-2.5 group"
                   href="#contact"
                 >
                   <span>Request a demo</span>
                   <span className="text-base font-bold transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-                <Link
+                </SectionLink>
+                <SectionLink
                   className="group inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-ink border-b-2 border-ink pb-1 hover:text-bronze hover:border-bronze transition-colors"
                   href="/#products"
                 >
                   <span className="transition-transform group-hover:-translate-x-1">←</span>
                   <span>ALL PRODUCTS</span>
-                </Link>
+                </SectionLink>
               </div>
             </div>
 

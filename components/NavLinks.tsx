@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import SectionLink from "@/components/SectionLink";
 import { usePathname } from "next/navigation";
 import { navLinks } from "@/lib/data";
 
@@ -22,7 +22,7 @@ export default function NavLinks({ activeClass, idleClass, onNavigate, tabIndex 
   const activeHref = useActiveNavHref();
 
   return navLinks.map((link) => (
-    <Link
+    <SectionLink
       key={link.href}
       href={link.href}
       onClick={onNavigate}
@@ -31,6 +31,6 @@ export default function NavLinks({ activeClass, idleClass, onNavigate, tabIndex 
       className={link.href === activeHref ? activeClass : idleClass}
     >
       {link.label}
-    </Link>
+    </SectionLink>
   ));
 }

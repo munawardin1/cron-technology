@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SectionLink from "@/components/SectionLink";
 import MobileMenu from "@/components/MobileMenu";
 import NavLinks from "@/components/NavLinks";
 
@@ -16,7 +17,7 @@ export default function Navbar() {
               src="/images/cron-star.png"
               width={24}
               height={24}
-              priority
+              preload
             />
           </div>
           <span className="font-headline font-semibold text-2xl tracking-tight text-ink">Cron</span>
@@ -38,13 +39,13 @@ export default function Navbar() {
               SYSTEMS ONLINE
             </span>
           </div>
-          <Link
+          <SectionLink
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-ink text-cream font-body text-xs font-semibold whitespace-nowrap hover:bg-forest hover:scale-105 transition-all shadow-md"
             href="#contact"
           >
             <span>Let&apos;s talk</span>
             <span className="text-sm font-bold">↗</span>
-          </Link>
+          </SectionLink>
           <MobileMenu />
         </div>
       </div>
